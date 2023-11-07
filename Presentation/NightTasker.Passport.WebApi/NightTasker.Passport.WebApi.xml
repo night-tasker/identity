@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NightTasker.Passport.WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:NightTasker.Passport.Presentation.Controllers.UsersController">
+            <summary>
+            Контроллер для работы с пользователями.
+            </summary>
+        </member>
+        <member name="M:NightTasker.Passport.Presentation.Controllers.UsersController.CreateUser(NightTasker.Passport.Presentation.Requests.User.CreateUserRequest,System.Threading.CancellationToken)">
+            <summary>
+            Создание пользователя.
+            </summary>
+            <param name="request">Запрос на создание пользователя.</param>
+            <param name="cancellationToken">Токен отмены.</param>
+            <returns></returns>
+        </member>
+        <member name="T:NightTasker.Passport.Presentation.Middlewares.ExceptionHandlerMiddleware">
+            <summary>
+            Middleware для глобальной обработки исключений.
+            </summary>
+        </member>
+        <member name="T:NightTasker.Passport.Presentation.Requests.User.CreateUserRequest">
+            <summary>
+            Запрос на создание пользователя.
+            </summary>
+        </member>
+        <member name="P:NightTasker.Passport.Presentation.Requests.User.CreateUserRequest.UserName">
+            <summary>
+            Имя пользователя.
+            </summary>
+        </member>
+        <member name="P:NightTasker.Passport.Presentation.Requests.User.CreateUserRequest.Password">
+            <summary>
+            Пароль пользователя.
+            </summary>
+        </member>
+        <member name="P:NightTasker.Passport.Presentation.Requests.User.CreateUserRequest.ConfirmPassword">
+            <summary>
+            Подтверждение пароля.
+            </summary>
+        </member>
+    </members>
+</doc>
