@@ -1,7 +1,8 @@
 ﻿using MapsterMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using NightTasker.Passport.Application.Contracts.Identity;
+using NightTasker.Passport.Application.ApplicationContracts.Identity;
+using NightTasker.Passport.Application.Exceptions.Unauthorized;
 using NightTasker.Passport.Application.Features.Users.Models;
 using NightTasker.Passport.Domain.Entities.User;
 using NightTasker.Passport.Infrastructure.Identity.Identity.Managers;
@@ -29,5 +30,21 @@ public class UserService : IUserService
     public Task<bool> IsUserNameExist(string username)
     {
         return _userManager.Users.AnyAsync(x => x.UserName != null && x.UserName.Equals(username));
+    }
+
+    public async Task<IdentityResult> LoginUser(LoginUserDto userDto)
+    {
+        var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == userDto.UserName);
+        if (user is null)
+        {
+            throw new UserWithUserNameUnauthorized(userDto.UserName);
+        }
+
+        if (!await _userManager.CheckPasswordAsync(user, userDto.Password))
+        {
+            throw new WrongUserPasswordUnauthorizedException(userDto.UserName);
+        }
+
+        throw new NotImplementedException();
     }
 }

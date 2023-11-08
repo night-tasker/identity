@@ -7,6 +7,8 @@ public class ErrorDetails
 {
     public string Message { get; set; } = null!;
 
+    public string? DisplayMessage { get; set; } = null!;
+
     public string TraceId { get; set; } = null!;
 
     public const string DefaultErrorMessage = "An error occurred while processing your request.";

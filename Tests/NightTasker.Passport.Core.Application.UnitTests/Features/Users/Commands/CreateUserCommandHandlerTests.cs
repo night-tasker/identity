@@ -1,6 +1,6 @@
 ﻿using Bogus;
 using Microsoft.AspNetCore.Identity;
-using NightTasker.Passport.Application.Contracts.Identity;
+using NightTasker.Passport.Application.ApplicationContracts.Identity;
 using NightTasker.Passport.Application.Exceptions.BadRequest;
 using NightTasker.Passport.Application.Features.Users.Commands.Create;
 using NightTasker.Passport.Application.Features.Users.Models;

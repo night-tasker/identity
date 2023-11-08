@@ -41,7 +41,8 @@ public class ExceptionHandlerMiddleware
         };
 
         context.Response.StatusCode = ResolveStatusCode(exception);
-        errorDetails.Message = ResolveMessage(exception);
+        errorDetails.Message = ErrorDetails.DefaultErrorMessage;
+        errorDetails.DisplayMessage = ResolveDisplayMessage(exception);
         
         return context.Response.WriteAsJsonAsync(errorDetails);
     }
@@ -53,10 +54,10 @@ public class ExceptionHandlerMiddleware
             : StatusCodes.Status500InternalServerError;
     }
 
-    private static string ResolveMessage(Exception exception)
+    private static string? ResolveDisplayMessage(Exception exception)
     {
         return exception is IPublicException publicException
             ? publicException.DisplayMessage
-            : ErrorDetails.DefaultErrorMessage;
+            : null;
     }
 }

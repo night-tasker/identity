@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
-using NightTasker.Passport.Application.Contracts.Identity;
+using NightTasker.Passport.Application.ApplicationContracts.Identity;
 using NightTasker.Passport.Application.Exceptions.BadRequest;
 
 namespace NightTasker.Passport.Application.Features.Users.Commands.Create;

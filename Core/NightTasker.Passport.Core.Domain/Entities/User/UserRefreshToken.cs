@@ -17,7 +17,7 @@ public class UserRefreshToken : IEntityWithId<Guid>, ICreatedDateTimeOffset
     /// <summary>
     /// Related user.
     /// </summary>
-    public User User { get; set; } = null!;
+    public User? User { get; set; } = null!;
 
     /// <summary>
     /// Field for check if refresh token is valid. 

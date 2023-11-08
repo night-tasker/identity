@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using NightTasker.Passport.Application.Contracts.Identity;
+using NightTasker.Passport.Application.ApplicationContracts.Identity;
 using NightTasker.Passport.Application.Models.Error;
 using NightTasker.Passport.Domain.Entities.User;
 using NightTasker.Passport.Infrastructure.Identity.Identity.Managers;
