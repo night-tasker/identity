@@ -23,6 +23,7 @@ public class ApplicationDbContext : IdentityDbContext<User, Role, Guid, UserClai
     {
         base.OnModelCreating(builder);
         UseSnakeCaseNamingConventions(builder);
+        builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
     }
 
     private void UseSnakeCaseNamingConventions(ModelBuilder builder)

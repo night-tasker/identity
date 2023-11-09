@@ -14,9 +14,10 @@ var identitySettings = builder.Configuration.GetSection(nameof(IdentitySettings)
 builder.Services.AddControllers();
 
 builder.Services
-    .AddApplicationServices()
+    .RegisterApplicationServices()
     .RegisterIdentityServices(identitySettings)
-    .AddPersistenceServices(builder.Configuration);
+    .RegisterPersistenceServices(builder.Configuration)
+    .RegisterApiServices();
 
 builder.Services.AddSwagger();
 

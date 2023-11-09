@@ -1,11 +1,12 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
+using NightTasker.Passport.Application.ApplicationContracts.Persistence;
 using NightTasker.Passport.Domain.Entities.Common;
 
 namespace NightTasker.Passport.Infrastructure.Repositories.Base;
 
-internal abstract class BaseRepository<TEntity> where TEntity : class, IEntity
+internal abstract class BaseRepository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : class, IEntity
 {
     private readonly ApplicationDbContext _context;
     private DbSet<TEntity> Entities { get; init; }
@@ -42,5 +43,11 @@ internal abstract class BaseRepository<TEntity> where TEntity : class, IEntity
         CancellationToken cancellationToken)
     {
         await Entities.Where(deleteExpression).ExecuteDeleteAsync(cancellationToken);
+    }
+
+    public async Task<TEntity?> TryGetById(TKey entityId, CancellationToken cancellationToken)
+    {
+        var entity = await Entities.FindAsync(entityId);
+        return entity;
     }
 }

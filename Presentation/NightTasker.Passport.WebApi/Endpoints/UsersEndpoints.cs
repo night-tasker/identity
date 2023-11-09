@@ -2,5 +2,11 @@
 
 public static class UsersEndpoints
 {
-    public const string UsersResource = "api/users";
+    public const string UsersResource = "users";
+    
+    public const string UserRegister = "register";
+
+    public const string UserLogin = "login";
+
+    public const string CurrentUserInfo = "current";
 }

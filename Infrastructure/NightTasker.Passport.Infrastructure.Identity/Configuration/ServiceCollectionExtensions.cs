@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using NightTasker.Passport.Application.ApplicationContracts.Identity;
+using NightTasker.Passport.Application.ApplicationContracts.Jwt;
 using NightTasker.Passport.Application.Models.Error;
 using NightTasker.Passport.Domain.Entities.User;
 using NightTasker.Passport.Infrastructure.Identity.Identity.Managers;
@@ -31,6 +32,8 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IUserStore<User>, AppUserStore>();
 
         services.AddScoped<IUserService, UserService>();
+
+        services.AddScoped<IJwtService, JwtService>();
         
         services.AddIdentity<User, Role>(options =>
         {

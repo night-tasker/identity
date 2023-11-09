@@ -17,6 +17,20 @@
             <param name="cancellationToken">Токен отмены.</param>
             <returns></returns>
         </member>
+        <member name="M:NightTasker.Passport.Presentation.Controllers.UsersController.LoginUser(NightTasker.Passport.Presentation.Requests.User.LoginUserRequest,System.Threading.CancellationToken)">
+            <summary>
+            Вход пользователя в систему.
+            </summary>
+            <param name="request">Запрос на вход в систему.</param>
+            <param name="cancellationToken">Токен отмены.</param>
+            <returns>Токен доступа.</returns>
+        </member>
+        <member name="M:NightTasker.Passport.Presentation.Controllers.UsersController.GetCurrentUserInfo">
+            <summary>
+            Получение информации о текущем пользователе.
+            </summary>
+            <returns>Информация о текущем пользователе.</returns>
+        </member>
         <member name="T:NightTasker.Passport.Presentation.Middlewares.ExceptionHandlerMiddleware">
             <summary>
             Middleware для глобальной обработки исключений.

@@ -2,7 +2,7 @@
 
 namespace NightTasker.Passport.Application.ApplicationContracts.Persistence;
 
-public interface IUserRefreshTokenRepository
+public interface IUserRefreshTokenRepository : IRepository<UserRefreshToken, Guid>
 {
     Task<Guid> CreateToken(Guid userId, CancellationToken cancellationToken);
 

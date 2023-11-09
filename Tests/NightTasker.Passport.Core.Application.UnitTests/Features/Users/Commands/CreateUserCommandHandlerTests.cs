@@ -28,7 +28,7 @@ public class CreateUserCommandHandlerTests
     {
         // Arrange
         _userService
-            .IsUserNameExist(Arg.Any<string>())
+            .IsUserNameExist(Arg.Any<string>(), CancellationToken.None)
             .Returns(true);
         var password = _faker.Random.String();
         var createUserDto = new CreateUserDto(_faker.Random.String(), password);
@@ -46,13 +46,13 @@ public class CreateUserCommandHandlerTests
     {
         // Arrange
         _userService
-            .IsUserNameExist(Arg.Any<string>())
+            .IsUserNameExist(Arg.Any<string>(), CancellationToken.None)
             .Returns(false);
         var identityResult = IdentityResult.Success;
         var password = _faker.Random.String();
         var createUserDto = new CreateUserDto(_faker.Random.String(), password);
         var command = new CreateUserCommand(createUserDto);
-        _userService.CreateUser(createUserDto)
+        _userService.CreateUser(createUserDto, CancellationToken.None)
             .Returns(identityResult);
         
         // Act

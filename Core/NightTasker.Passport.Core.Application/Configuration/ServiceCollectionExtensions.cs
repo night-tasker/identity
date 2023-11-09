@@ -7,7 +7,7 @@ namespace NightTasker.Passport.Application.Configuration;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddApplicationServices(this IServiceCollection services)
+    public static IServiceCollection RegisterApplicationServices(this IServiceCollection services)
     {
         services.RegisterMapper()
             .RegisterMediator();

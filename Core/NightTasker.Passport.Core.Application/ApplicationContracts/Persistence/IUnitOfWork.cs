@@ -2,7 +2,9 @@
 
 public interface IUnitOfWork
 {
-    IUserRefreshTokenRepository UserRefreshTokenRepository { get; init; }
+    IUserRefreshTokenRepository UserRefreshTokenRepository { get; }
+    
+    IUserRepository UserRepository { get; }
 
     Task SaveChanges(CancellationToken cancellationToken);
 }

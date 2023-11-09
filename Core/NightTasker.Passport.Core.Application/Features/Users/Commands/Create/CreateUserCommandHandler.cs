@@ -16,12 +16,12 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Ident
     
     public async Task<IdentityResult> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
-        if (await _userService.IsUserNameExist(request.User.UserName))
+        if (await _userService.IsUserNameExist(request.User.UserName, cancellationToken))
         {
             throw new UserNameExistsBadRequestException(request.User.UserName);
         }
 
-        var identityResult = await _userService.CreateUser(request.User);
+        var identityResult = await _userService.CreateUser(request.User, CancellationToken.None);
         return identityResult;
     }
 }

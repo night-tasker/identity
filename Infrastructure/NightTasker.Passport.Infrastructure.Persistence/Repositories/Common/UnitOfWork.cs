@@ -10,10 +10,13 @@ public class UnitOfWork : IUnitOfWork
     {
         _dbContext = dbContext;
         UserRefreshTokenRepository = new UserRefreshTokenRepository(dbContext);
+        UserRepository = new UserRepository(dbContext);
     }
 
-    public IUserRefreshTokenRepository UserRefreshTokenRepository { get; init; }
+    public IUserRefreshTokenRepository UserRefreshTokenRepository { get; }
     
+    public IUserRepository UserRepository { get; }
+
     public Task SaveChanges(CancellationToken cancellationToken)
     {
         return _dbContext.SaveChangesAsync(cancellationToken);

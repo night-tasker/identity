@@ -5,15 +5,17 @@ using NightTasker.Passport.Infrastructure.Repositories.Base;
 
 namespace NightTasker.Passport.Infrastructure.Repositories;
 
-internal class UserRefreshTokenRepository : BaseRepository<UserRefreshToken>, IUserRefreshTokenRepository
+internal class UserRefreshTokenRepository : BaseRepository<UserRefreshToken, Guid>, IUserRefreshTokenRepository
 {
     public UserRefreshTokenRepository(ApplicationDbContext context) : base(context)
     {
     }
     
-    public Task<Guid> CreateToken(Guid userId, CancellationToken cancellationToken)
+    public async Task<Guid> CreateToken(Guid userId, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var token = new UserRefreshToken() { IsValid = true, UserId = userId };
+        await Add(token, cancellationToken);
+        return token.Id;
     }
 
     public Task<UserRefreshToken?> TryGetValidRefreshToken(Guid userId, CancellationToken cancellationToken)
