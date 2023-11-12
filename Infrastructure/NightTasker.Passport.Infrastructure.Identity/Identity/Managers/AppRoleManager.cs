@@ -4,6 +4,9 @@ using NightTasker.Passport.Domain.Entities.User;
 
 namespace NightTasker.Passport.Infrastructure.Identity.Identity.Managers;
 
+/// <summary>
+/// Менеджер для работы с ролями.
+/// </summary>
 internal class AppRoleManager : RoleManager<Role>
 {
     public AppRoleManager(

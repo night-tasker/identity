@@ -7,6 +7,9 @@ using NightTasker.Passport.Application.Features.Users.Models;
 
 namespace NightTasker.Passport.Application.Features.Users.Queries.GetCurrentUserInfo;
 
+/// <summary>
+/// Хэндлер запроса для получения информации о текущем пользователе.
+/// </summary>
 public class GetCurrentUserInfoQueryHandler : IRequestHandler<GetCurrentUserInfoQuery, CurrentUserInfo>
 {
     private readonly IIdentityService _identityService;

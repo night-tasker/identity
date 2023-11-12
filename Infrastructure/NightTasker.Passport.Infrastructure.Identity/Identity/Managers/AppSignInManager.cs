@@ -7,6 +7,9 @@ using NightTasker.Passport.Domain.Entities.User;
 
 namespace NightTasker.Passport.Infrastructure.Identity.Identity.Managers;
 
+/// <summary>
+/// Менеджер для работы со входами пользователей.
+/// </summary>
 internal class AppSignInManager : SignInManager<User>
 {
     public AppSignInManager(

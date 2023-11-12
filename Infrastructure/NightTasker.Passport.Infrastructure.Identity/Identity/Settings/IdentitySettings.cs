@@ -1,5 +1,8 @@
 ﻿namespace NightTasker.Passport.Infrastructure.Identity.Identity.Settings;
 
+/// <summary>
+/// Конфигурационные настройки для Identity.
+/// </summary>
 public class IdentitySettings
 {
     public string SecretKey { get; set; } = null!;

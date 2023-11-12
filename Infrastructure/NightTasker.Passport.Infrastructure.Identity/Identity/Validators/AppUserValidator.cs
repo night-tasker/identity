@@ -3,6 +3,9 @@ using NightTasker.Passport.Domain.Entities.User;
 
 namespace NightTasker.Passport.Infrastructure.Identity.Identity.Validators;
 
+/// <summary>
+/// Валидатор для пользователей. 
+/// </summary>
 public class AppUserValidator : UserValidator<User>
 {
     public AppUserValidator(IdentityErrorDescriber errors) : base(errors) 

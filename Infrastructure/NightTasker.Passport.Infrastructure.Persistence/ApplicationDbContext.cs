@@ -6,6 +6,9 @@ using NightTasker.Passport.Application.Common.Extensions;
 
 namespace NightTasker.Passport.Infrastructure;
 
+/// <summary>
+/// Контекст для работы с данными.
+/// </summary>
 public class ApplicationDbContext : IdentityDbContext<User, Role, Guid, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)

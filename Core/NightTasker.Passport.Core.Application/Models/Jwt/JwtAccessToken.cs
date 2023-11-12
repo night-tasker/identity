@@ -2,15 +2,30 @@
 
 namespace NightTasker.Passport.Application.Models.Jwt;
 
+/// <summary>
+/// JWT токен доступа.
+/// </summary>
 public class JwtAccessToken
 {
-    public string AccessToken { get; set; } = null!;
+    /// <summary>
+    /// Токен доступа.
+    /// </summary>
+    public string AccessToken { get; init; }
 
-    public string RefreshToken { get; set; } = null!;
+    /// <summary>
+    /// Токен для обновления.
+    /// </summary>
+    public string RefreshToken { get; init; }
 
-    public string TokenType { get; set; } = null!;
+    /// <summary>
+    /// Тип токена.
+    /// </summary>
+    public string TokenType { get; init; }
 
-    public int ExpiresIn { get; set; }
+    /// <summary>
+    /// Срок истечения.
+    /// </summary>
+    public int ExpiresIn { get; init; }
 
     public JwtAccessToken(JwtSecurityToken securityToken, string refreshToken)
     {

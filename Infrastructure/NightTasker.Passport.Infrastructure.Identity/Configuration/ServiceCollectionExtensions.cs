@@ -18,8 +18,14 @@ using NightTasker.Passport.Infrastructure.Identity.Implementations.Services;
 
 namespace NightTasker.Passport.Infrastructure.Identity.Configuration;
 
+/// <summary>
+/// Класс методов расширений для коллекции сервисов.
+/// </summary>
 public static class ServiceCollectionExtensions
 {
+    /// <summary>
+    /// Зарегистрировать сервисы Infrastructure.Identity слоя.
+    /// </summary>
     public static IServiceCollection RegisterIdentityServices(this IServiceCollection services, IdentitySettings identitySettings)
     {
         services.AddScoped<IUserValidator<User>, AppUserValidator>();

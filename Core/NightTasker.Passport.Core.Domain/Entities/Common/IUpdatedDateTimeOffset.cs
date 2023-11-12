@@ -1,9 +1,12 @@
 ﻿namespace NightTasker.Passport.Domain.Entities.Common;
 
+/// <summary>
+/// Дата и время обновления.
+/// </summary>
 public interface IUpdatedDateTimeOffset
 {
     /// <summary>
-    /// Update date and time.
+    /// Дата и время обновления.
     /// </summary>
     DateTimeOffset UpdatedDateTimeOffset { get; set; }
 }

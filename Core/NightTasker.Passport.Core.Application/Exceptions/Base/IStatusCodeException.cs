@@ -1,6 +1,12 @@
 ﻿namespace NightTasker.Passport.Application.Exceptions.Base;
 
+/// <summary>
+/// Exception с HTTP-статус кодом.
+/// </summary>
 public interface IStatusCodeException
 {
-    int StatusCode { get; init; }
+    /// <summary>
+    /// Статус-код исключения.
+    /// </summary>
+    int StatusCode { get; }
 }

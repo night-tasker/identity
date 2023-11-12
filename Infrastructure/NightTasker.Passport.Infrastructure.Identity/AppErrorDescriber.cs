@@ -2,6 +2,9 @@
 
 namespace NightTasker.Passport.Infrastructure.Identity;
 
+/// <summary>
+/// Describer ошибок для Identity.
+/// </summary>
 public class AppErrorDescriber : IdentityErrorDescriber
 {
     public override IdentityError DefaultError()

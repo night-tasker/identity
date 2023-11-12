@@ -2,27 +2,31 @@
 
 namespace NightTasker.Passport.Domain.Entities.User;
 
+/// <summary>
+/// Рефреш-токен пользователя.
+/// </summary>
 public class UserRefreshToken : IEntityWithId<Guid>, ICreatedDateTimeOffset
 {
     /// <summary>
-    /// Unique identifier.
+    /// ИД рефреш-токена пользователя.
     /// </summary>
     public Guid Id { get; set; }
 
     /// <summary>
-    /// User unique identifier.
+    /// ИД пользователя.
     /// </summary>
     public Guid UserId { get; set; }
 
     /// <summary>
-    /// Related user.
+    /// Пользователь.
     /// </summary>
     public User? User { get; set; } = null!;
 
     /// <summary>
-    /// Field for check if refresh token is valid. 
+    /// Валидность рефреш-токена.
     /// </summary>
     public bool IsValid { get; set; }
 
+    /// <inheritdoc />
     public DateTimeOffset CreatedDateTimeOffset { get; set; }
 }

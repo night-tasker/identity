@@ -3,9 +3,14 @@ using NightTasker.Passport.Domain.Entities.Common;
 
 namespace NightTasker.Passport.Domain.Entities.User;
 
+/// <summary>
+/// Роль пользователя.
+/// </summary>
 public class Role : IdentityRole<Guid>, IEntityWithId<Guid>, IDateTimeOffsetModification
 {
+    /// <inheritdoc />
     public DateTimeOffset CreatedDateTimeOffset { get; set; }
  
+    /// <inheritdoc />
     public DateTimeOffset UpdatedDateTimeOffset { get; set; }
 }

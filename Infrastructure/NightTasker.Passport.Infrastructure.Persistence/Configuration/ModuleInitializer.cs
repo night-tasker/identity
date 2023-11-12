@@ -3,6 +3,9 @@ using System.Runtime.CompilerServices;
 
 namespace NightTasker.Passport.Infrastructure.Configuration;
 
+/// <summary>
+/// Инициализатор модуля.
+/// </summary>
 public static class ModuleInitializer
 {
     [ModuleInitializer]

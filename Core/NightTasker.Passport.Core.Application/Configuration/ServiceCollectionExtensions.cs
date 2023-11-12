@@ -5,16 +5,27 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace NightTasker.Passport.Application.Configuration;
 
+/// <summary>
+/// Класс с методами расширения для коллекции сервисов.
+/// </summary>
 public static class ServiceCollectionExtensions
 {
+    /// <summary>
+    /// Зарегистрировать сервисы слоя приложения.
+    /// </summary>
+    /// <param name="services">Коллекция сервисов.</param>
+    /// <returns>Коллекция сервисов.</returns>
     public static IServiceCollection RegisterApplicationServices(this IServiceCollection services)
     {
-        services.RegisterMapper()
-            .RegisterMediator();
-        
+        services.RegisterMediator();
         return services;
     }
 
+    /// <summary>
+    /// Зарегистрировать Mediator.
+    /// </summary>
+    /// <param name="services">Коллекция сервисов.</param>
+    /// <returns>Коллекция сервисов.</returns>
     private static IServiceCollection RegisterMediator(this IServiceCollection services)
     {
         services.AddMediatR(options =>
@@ -23,15 +34,6 @@ public static class ServiceCollectionExtensions
             options.RegisterServicesFromAssembly(typeof(ServiceCollectionExtensions).Assembly);
         });
 
-        return services;
-    }
-
-    private static IServiceCollection RegisterMapper(this IServiceCollection services)
-    {
-        var typeAdapterConfig = TypeAdapterConfig.GlobalSettings;
-        typeAdapterConfig.Scan(Assembly.GetExecutingAssembly());
-        var mapperConfig = new Mapper(typeAdapterConfig);
-        services.AddSingleton<IMapper>(mapperConfig);
         return services;
     }
 }
