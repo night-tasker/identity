@@ -7,23 +7,23 @@ using NightTasker.Passport.Application.Exceptions.BadRequest;
 using NightTasker.Passport.Application.Exceptions.Unauthorized;
 using NightTasker.Passport.Application.Features.Users.Models;
 using NightTasker.Passport.Domain.Entities.User;
-using NightTasker.Passport.Infrastructure.Identity.Identity.Managers;
+using NightTasker.Passport.Infrastructure.Identity.Identity.Contracts;
 
 namespace NightTasker.Passport.Infrastructure.Identity.Implementations.Services;
 
 /// <inheritdoc />
 public class UserService : IUserService
 {
-    private readonly AppUserManager _userManager;
+    private readonly IAppUserManager _appUserManager;
     private readonly IMapper _mapper;
     private readonly ILogger<UserService> _logger;
 
     public UserService(
-        AppUserManager userManager,
+        IAppUserManager userManager,
         IMapper mapper,
         ILogger<UserService> logger)
     {
-        _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+        _appUserManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
@@ -39,8 +39,8 @@ public class UserService : IUserService
         var user = _mapper.Map<User>(userDto);
         _logger.LogInformation("[STARTED] Create user with username {UserName}", userDto.UserName);
         
-        var createIdentityResult = await _userManager.CreateAsync(user);
-        var addPasswordIdentityResult = await _userManager.AddPasswordAsync(user, userDto.Password);
+        var createIdentityResult = await _appUserManager.CreateAsync(user);
+        var addPasswordIdentityResult = await _appUserManager.AddPasswordAsync(user, userDto.Password);
         
         if (!(createIdentityResult.Succeeded && addPasswordIdentityResult.Succeeded))
         {
@@ -58,20 +58,20 @@ public class UserService : IUserService
     /// <inheritdoc />
     public Task<bool> IsUserNameExist(string? username, CancellationToken cancellationToken)
     {
-        return _userManager.Users.AnyAsync(x => x.UserName != null && x.UserName.Equals(username), cancellationToken);
+        return _appUserManager.Users.AnyAsync(x => x.UserName != null && x.UserName.Equals(username), cancellationToken);
     }
 
     /// <inheritdoc />
     public async Task<User> ValidateLoginUser(LoginUserDto userDto, CancellationToken cancellationToken)
     {
-        var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == userDto.UserName, cancellationToken);
+        var user = await _appUserManager.Users.FirstOrDefaultAsync(x => x.UserName == userDto.UserName, cancellationToken);
         if (user is null)
         {
             _logger.LogInformation("User with username {UserName} not found", userDto.UserName);
             throw new UserWithUserNameUnauthorizedException(userDto.UserName);
         }
 
-        if (!await _userManager.CheckPasswordAsync(user, userDto.Password))
+        if (!await _appUserManager.CheckPasswordAsync(user, userDto.Password))
         {
             _logger.LogInformation("Wrong password for user with username {UserName}", userDto.UserName);
             throw new WrongUserPasswordUnauthorizedException(userDto.UserName);

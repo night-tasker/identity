@@ -1,11 +1,8 @@
-﻿using System.Net;
-using Mapster;
-using MapsterMapper;
+﻿using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using NightTasker.Passport.Application.ApplicationContracts.Identity;
 using NightTasker.Passport.Application.Features.Users.Commands.Create;
 using NightTasker.Passport.Application.Features.Users.Commands.Login;
 using NightTasker.Passport.Application.Features.Users.Commands.RefreshToken;

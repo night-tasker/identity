@@ -10,6 +10,7 @@ using NightTasker.Passport.Application.ApplicationContracts.Identity;
 using NightTasker.Passport.Application.ApplicationContracts.Jwt;
 using NightTasker.Passport.Application.Models.Error;
 using NightTasker.Passport.Domain.Entities.User;
+using NightTasker.Passport.Infrastructure.Identity.Identity.Contracts;
 using NightTasker.Passport.Infrastructure.Identity.Identity.Managers;
 using NightTasker.Passport.Infrastructure.Identity.Identity.Settings;
 using NightTasker.Passport.Infrastructure.Identity.Identity.Store;
@@ -66,6 +67,8 @@ public static class ServiceCollectionExtensions
         .AddDefaultTokenProviders()
         .AddSignInManager<AppSignInManager>()
         .AddDefaultTokenProviders();
+
+        services.AddScoped<IAppUserManager, AppUserManager>();
 
         services.AddAuthorization();
 

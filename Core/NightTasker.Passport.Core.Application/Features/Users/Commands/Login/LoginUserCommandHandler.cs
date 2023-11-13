@@ -11,21 +11,21 @@ namespace NightTasker.Passport.Application.Features.Users.Commands.Login;
 public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, JwtAccessToken>
 {
     private readonly IJwtService _jwtService;
-    private readonly IUserService _userManager;
+    private readonly IUserService _userService;
 
     public LoginUserCommandHandler(
         IJwtService jwtService,
         IUserService userManager)
     {
         _jwtService = jwtService ?? throw new ArgumentNullException(nameof(jwtService));
-        _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+        _userService = userManager ?? throw new ArgumentNullException(nameof(userManager));
     }
     
     public async Task<JwtAccessToken> Handle(
         LoginUserCommand request, 
         CancellationToken cancellationToken)
     {
-        var user = await _userManager.ValidateLoginUser(request.UserDto, cancellationToken);
+        var user = await _userService.ValidateLoginUser(request.UserDto, cancellationToken);
         var accessToken = await _jwtService.GenerateAsync(user, cancellationToken);
         return accessToken;
     }
