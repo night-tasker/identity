@@ -10,7 +10,6 @@ public class TestNpgSql : IAsyncLifetime
         .WithImage("postgres:16")
         .Build();
 
-
     public Task InitializeAsync()
     {
         return NpgSqlContainer.StartAsync();
