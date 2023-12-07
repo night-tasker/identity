@@ -50,6 +50,13 @@
             </summary>
             <param name="app">WebApplication</param>
         </member>
+        <member name="M:NightTasker.Passport.Presentation.Configuration.WebApplicationExtensions.ApplyDatabaseMigrationsAsync(Microsoft.AspNetCore.Builder.WebApplication,System.Threading.CancellationToken)">
+            <summary>
+            Применение миграций базы данных.
+            </summary>
+            <param name="app">WebApplication.</param>
+            <param name="cancellationToken">Токен отмены.</param>
+        </member>
         <member name="T:NightTasker.Passport.Presentation.Constants.ApiConstants">
             <summary>
             Константы для настройки АПИ.

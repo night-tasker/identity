@@ -30,6 +30,8 @@ builder.Services.AddDefaultCorsPolicy();
 
 var app = builder.Build();
 
+await app.ApplyDatabaseMigrationsAsync(CancellationToken.None);
+
 app.UseSerilogRequestLogging();
 
 app.ConfigureSwagger(); 
