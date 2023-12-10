@@ -23,7 +23,7 @@ namespace NightTasker.Identity.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("NightTasker.Passport.Domain.Entities.User.Role", b =>
+            modelBuilder.Entity("NightTasker.Identity.Domain.Entities.User.Role", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -63,7 +63,7 @@ namespace NightTasker.Identity.Infrastructure.Migrations
                     b.ToTable("asp_net_roles", (string)null);
                 });
 
-            modelBuilder.Entity("NightTasker.Passport.Domain.Entities.User.RoleClaim", b =>
+            modelBuilder.Entity("NightTasker.Identity.Domain.Entities.User.RoleClaim", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -101,7 +101,7 @@ namespace NightTasker.Identity.Infrastructure.Migrations
                     b.ToTable("asp_net_role_claims", (string)null);
                 });
 
-            modelBuilder.Entity("NightTasker.Passport.Domain.Entities.User.User", b =>
+            modelBuilder.Entity("NightTasker.Identity.Domain.Entities.User.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -190,7 +190,7 @@ namespace NightTasker.Identity.Infrastructure.Migrations
                     b.ToTable("asp_net_users", (string)null);
                 });
 
-            modelBuilder.Entity("NightTasker.Passport.Domain.Entities.User.UserClaim", b =>
+            modelBuilder.Entity("NightTasker.Identity.Domain.Entities.User.UserClaim", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -228,7 +228,7 @@ namespace NightTasker.Identity.Infrastructure.Migrations
                     b.ToTable("asp_net_user_claims", (string)null);
                 });
 
-            modelBuilder.Entity("NightTasker.Passport.Domain.Entities.User.UserLogin", b =>
+            modelBuilder.Entity("NightTasker.Identity.Domain.Entities.User.UserLogin", b =>
                 {
                     b.Property<string>("LoginProvider")
                         .HasColumnType("text")
@@ -263,7 +263,7 @@ namespace NightTasker.Identity.Infrastructure.Migrations
                     b.ToTable("asp_net_user_logins", (string)null);
                 });
 
-            modelBuilder.Entity("NightTasker.Passport.Domain.Entities.User.UserRefreshToken", b =>
+            modelBuilder.Entity("NightTasker.Identity.Domain.Entities.User.UserRefreshToken", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -291,7 +291,7 @@ namespace NightTasker.Identity.Infrastructure.Migrations
                     b.ToTable("user_refresh_token", (string)null);
                 });
 
-            modelBuilder.Entity("NightTasker.Passport.Domain.Entities.User.UserRole", b =>
+            modelBuilder.Entity("NightTasker.Identity.Domain.Entities.User.UserRole", b =>
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid")
@@ -318,7 +318,7 @@ namespace NightTasker.Identity.Infrastructure.Migrations
                     b.ToTable("asp_net_user_roles", (string)null);
                 });
 
-            modelBuilder.Entity("NightTasker.Passport.Domain.Entities.User.UserToken", b =>
+            modelBuilder.Entity("NightTasker.Identity.Domain.Entities.User.UserToken", b =>
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid")
@@ -346,9 +346,9 @@ namespace NightTasker.Identity.Infrastructure.Migrations
                     b.ToTable("asp_net_user_tokens", (string)null);
                 });
 
-            modelBuilder.Entity("NightTasker.Passport.Domain.Entities.User.RoleClaim", b =>
+            modelBuilder.Entity("NightTasker.Identity.Domain.Entities.User.RoleClaim", b =>
                 {
-                    b.HasOne("NightTasker.Passport.Domain.Entities.User.Role", null)
+                    b.HasOne("NightTasker.Identity.Domain.Entities.User.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -356,9 +356,9 @@ namespace NightTasker.Identity.Infrastructure.Migrations
                         .HasConstraintName("fk_asp_net_role_claims_asp_net_roles_role_id");
                 });
 
-            modelBuilder.Entity("NightTasker.Passport.Domain.Entities.User.UserClaim", b =>
+            modelBuilder.Entity("NightTasker.Identity.Domain.Entities.User.UserClaim", b =>
                 {
-                    b.HasOne("NightTasker.Passport.Domain.Entities.User.User", null)
+                    b.HasOne("NightTasker.Identity.Domain.Entities.User.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -366,9 +366,9 @@ namespace NightTasker.Identity.Infrastructure.Migrations
                         .HasConstraintName("fk_asp_net_user_claims_asp_net_users_user_id");
                 });
 
-            modelBuilder.Entity("NightTasker.Passport.Domain.Entities.User.UserLogin", b =>
+            modelBuilder.Entity("NightTasker.Identity.Domain.Entities.User.UserLogin", b =>
                 {
-                    b.HasOne("NightTasker.Passport.Domain.Entities.User.User", null)
+                    b.HasOne("NightTasker.Identity.Domain.Entities.User.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -376,9 +376,9 @@ namespace NightTasker.Identity.Infrastructure.Migrations
                         .HasConstraintName("fk_asp_net_user_logins_asp_net_users_user_id");
                 });
 
-            modelBuilder.Entity("NightTasker.Passport.Domain.Entities.User.UserRefreshToken", b =>
+            modelBuilder.Entity("NightTasker.Identity.Domain.Entities.User.UserRefreshToken", b =>
                 {
-                    b.HasOne("NightTasker.Passport.Domain.Entities.User.User", "User")
+                    b.HasOne("NightTasker.Identity.Domain.Entities.User.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -388,16 +388,16 @@ namespace NightTasker.Identity.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("NightTasker.Passport.Domain.Entities.User.UserRole", b =>
+            modelBuilder.Entity("NightTasker.Identity.Domain.Entities.User.UserRole", b =>
                 {
-                    b.HasOne("NightTasker.Passport.Domain.Entities.User.Role", null)
+                    b.HasOne("NightTasker.Identity.Domain.Entities.User.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_asp_net_user_roles_asp_net_roles_role_id");
 
-                    b.HasOne("NightTasker.Passport.Domain.Entities.User.User", null)
+                    b.HasOne("NightTasker.Identity.Domain.Entities.User.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -405,9 +405,9 @@ namespace NightTasker.Identity.Infrastructure.Migrations
                         .HasConstraintName("fk_asp_net_user_roles_asp_net_users_user_id");
                 });
 
-            modelBuilder.Entity("NightTasker.Passport.Domain.Entities.User.UserToken", b =>
+            modelBuilder.Entity("NightTasker.Identity.Domain.Entities.User.UserToken", b =>
                 {
-                    b.HasOne("NightTasker.Passport.Domain.Entities.User.User", null)
+                    b.HasOne("NightTasker.Identity.Domain.Entities.User.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

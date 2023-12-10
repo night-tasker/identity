@@ -28,7 +28,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Infrastructure\NightTasker.Passport.Infrastructure.Identity\NightTasker.Passport.Infrastructure.Identity.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\NightTasker.Identity.Infrastructure.Identity\NightTasker.Identity.Infrastructure.Identity.csproj" />
     </ItemGroup>
 
 </Project>

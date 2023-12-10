@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "NightTasker.Passport.Profile": {
+    "NightTasker.Identity.Profile": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": false,

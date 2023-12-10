@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <DocumentationFile>NightTasker.Passport.Presentation.WebApi.xml</DocumentationFile>
+      <DocumentationFile>NightTasker.Identity.Presentation.WebApi.xml</DocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>

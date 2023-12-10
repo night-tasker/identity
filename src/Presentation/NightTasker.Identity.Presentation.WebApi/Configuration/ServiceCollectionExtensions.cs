@@ -35,7 +35,7 @@ public static class ServiceCollectionExtensions
         services.AddSwaggerGen(options =>
         {
             options.SwaggerDoc("v1", new OpenApiInfo 
-                { Title = "night-tasker-passport", Version = "1.0", Description = "night tasker passport application" }
+                { Title = "night-tasker-identity", Version = "1.0", Description = "night tasker identity application" }
             );
             var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);

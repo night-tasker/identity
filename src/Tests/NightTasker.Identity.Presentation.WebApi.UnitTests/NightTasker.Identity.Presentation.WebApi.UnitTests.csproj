@@ -26,7 +26,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Presentation\NightTasker.Passport.Presentation.WebApi\NightTasker.Passport.Presentation.WebApi.csproj" />
+      <ProjectReference Include="..\..\Presentation\NightTasker.Identity.Presentation.WebApi\NightTasker.Identity.Presentation.WebApi.csproj" />
     </ItemGroup>
 
 </Project>
