@@ -3,27 +3,17 @@
 namespace NightTasker.Passport.Infrastructure.Repositories.Common;
 
 /// <inheritdoc />
-public class UnitOfWork : IUnitOfWork
+public class UnitOfWork(ApplicationDbContext dbContext) : IUnitOfWork
 {
-    private readonly ApplicationDbContext _dbContext;
-
-    public UnitOfWork(ApplicationDbContext dbContext)
-    {
-        _dbContext = dbContext;
-        UserRefreshTokenRepository = new UserRefreshTokenRepository(dbContext);
-        UserRepository = new UserRepository(dbContext);
-    }
-
-    
     /// <inheritdoc />
-    public IUserRefreshTokenRepository UserRefreshTokenRepository { get; }
-    
+    public IUserRefreshTokenRepository UserRefreshTokenRepository { get; } = new UserRefreshTokenRepository(dbContext);
+
     /// <inheritdoc />
-    public IUserRepository UserRepository { get; }
+    public IUserRepository UserRepository { get; } = new UserRepository(dbContext);
 
     /// <inheritdoc />
     public Task SaveChanges(CancellationToken cancellationToken)
     {
-        return _dbContext.SaveChangesAsync(cancellationToken);
+        return dbContext.SaveChangesAsync(cancellationToken);
     }
 }

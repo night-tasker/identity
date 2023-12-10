@@ -12,22 +12,15 @@ using NightTasker.Passport.Infrastructure.Identity.Identity.Contracts;
 namespace NightTasker.Passport.Infrastructure.Identity.Implementations.Services;
 
 /// <inheritdoc />
-public class UserService : IUserService
-{
-    private readonly IAppUserManager _appUserManager;
-    private readonly IMapper _mapper;
-    private readonly ILogger<UserService> _logger;
-
-    public UserService(
-        IAppUserManager userManager,
+public class UserService(IAppUserManager userManager,
         IMapper mapper,
         ILogger<UserService> logger)
-    {
-        _appUserManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
-        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-    }
-    
+    : IUserService
+{
+    private readonly IAppUserManager _appUserManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+    private readonly IMapper _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+    private readonly ILogger<UserService> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+
     /// <inheritdoc />
     public async Task<IdentityResult> CreateUser(CreateUserDto userDto, CancellationToken cancellationToken)
     {

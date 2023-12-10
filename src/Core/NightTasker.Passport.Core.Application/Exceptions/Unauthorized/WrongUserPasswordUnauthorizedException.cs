@@ -5,9 +5,5 @@ namespace NightTasker.Passport.Application.Exceptions.Unauthorized;
 /// <summary>
 /// Исключение неправильного пароля пользователя.
 /// </summary>
-public class WrongUserPasswordUnauthorizedException : UnauthorizedException
-{
-    public WrongUserPasswordUnauthorizedException(string username) : base($"User with username: {username} entered wrong password")
-    {
-    }
-}
+public class WrongUserPasswordUnauthorizedException(string username) : UnauthorizedException(
+    $"User with username: {username} entered wrong password");

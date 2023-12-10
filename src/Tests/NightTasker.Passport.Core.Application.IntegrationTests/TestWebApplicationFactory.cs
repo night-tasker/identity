@@ -8,14 +8,9 @@ using NightTasker.Passport.Infrastructure;
 
 namespace NightTasker.Passport.Core.Application.IntegrationTests;
 
-public class TestWebApplicationFactory : WebApplicationFactory<Program>
+public class TestWebApplicationFactory(TestNpgSql databaseFixture) : WebApplicationFactory<Program>
 {
-    private readonly string _connectionString;
-
-    public TestWebApplicationFactory(TestNpgSql databaseFixture)
-    {
-        _connectionString = databaseFixture.NpgSqlContainer.GetConnectionString();
-    }
+    private readonly string _connectionString = databaseFixture.NpgSqlContainer.GetConnectionString();
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {

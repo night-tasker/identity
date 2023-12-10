@@ -7,17 +7,18 @@ using NightTasker.Passport.Domain.Entities.Common;
 namespace NightTasker.Passport.Infrastructure.Repositories.Base;
 
 /// <inheritdoc cref="IRepository{TEntity,TKey}"/>
-internal abstract class BaseRepository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : class, IEntity
+internal abstract class BaseRepository<TEntity, TKey>(ApplicationDbContext context) : IRepository<TEntity, TKey>
+    where TEntity : class, IEntity
 {
     /// <summary>
     /// Контекст для работы с данными.
     /// </summary>
-    private readonly ApplicationDbContext _context;
+    private readonly ApplicationDbContext _context = context;
     
     /// <summary>
     /// Записи определённой сущности.
     /// </summary>
-    private DbSet<TEntity> Entities { get; init; }
+    private DbSet<TEntity> Entities { get; init; } = context.Set<TEntity>();
 
     /// <summary>
     /// Таблица записей определённой сущности.
@@ -28,13 +29,7 @@ internal abstract class BaseRepository<TEntity, TKey> : IRepository<TEntity, TKe
     /// Неотслеживаемая таблица определённой сущности.
     /// </summary>
     protected virtual IQueryable<TEntity> NoTrackingTable => Entities.AsNoTrackingWithIdentityResolution();
-    
-    protected BaseRepository(ApplicationDbContext context)
-    {
-        _context = context;
-        Entities = context.Set<TEntity>();
-    }
-    
+
     /// <summary>
     /// Получить все записи.
     /// </summary>

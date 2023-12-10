@@ -8,19 +8,13 @@ namespace NightTasker.Passport.Application.Features.Users.Commands.Login;
 /// <summary>
 /// Хэндлер для команды на вход пользователя.
 /// </summary>
-public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, JwtAccessToken>
+public class LoginUserCommandHandler(
+    IJwtService jwtService,
+    IUserService userManager) : IRequestHandler<LoginUserCommand, JwtAccessToken>
 {
-    private readonly IJwtService _jwtService;
-    private readonly IUserService _userService;
+    private readonly IJwtService _jwtService = jwtService ?? throw new ArgumentNullException(nameof(jwtService));
+    private readonly IUserService _userService = userManager ?? throw new ArgumentNullException(nameof(userManager));
 
-    public LoginUserCommandHandler(
-        IJwtService jwtService,
-        IUserService userManager)
-    {
-        _jwtService = jwtService ?? throw new ArgumentNullException(nameof(jwtService));
-        _userService = userManager ?? throw new ArgumentNullException(nameof(userManager));
-    }
-    
     public async Task<JwtAccessToken> Handle(
         LoginUserCommand request, 
         CancellationToken cancellationToken)

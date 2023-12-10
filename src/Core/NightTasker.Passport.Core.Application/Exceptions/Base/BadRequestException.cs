@@ -5,13 +5,8 @@ namespace NightTasker.Passport.Application.Exceptions.Base;
 /// <summary>
 /// BadRequest (400) исключение.
 /// </summary>
-public abstract class BadRequestException : Exception, IStatusCodeException
+public abstract class BadRequestException(string message) : Exception(message), IStatusCodeException
 {
-    protected BadRequestException(string message) : base(message)
-    {
-        StatusCode = (int)HttpStatusCode.BadRequest;
-    }
-    
     /// <inheritdoc />
-    public int StatusCode { get; init; }
+    public int StatusCode { get; init; } = (int)HttpStatusCode.BadRequest;
 }

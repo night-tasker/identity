@@ -72,6 +72,11 @@
             Контроллер для работы с пользователями.
             </summary>
         </member>
+        <member name="M:NightTasker.Passport.Presentation.Controllers.V1.UsersController.#ctor(MediatR.IMediator,MapsterMapper.IMapper)">
+            <summary>
+            Контроллер для работы с пользователями.
+            </summary>
+        </member>
         <member name="M:NightTasker.Passport.Presentation.Controllers.V1.UsersController.CreateUser(NightTasker.Passport.Presentation.Requests.User.CreateUserRequest,System.Threading.CancellationToken)">
             <summary>
             Создание пользователя.
@@ -132,6 +137,11 @@
             </summary>
         </member>
         <member name="T:NightTasker.Passport.Presentation.Middlewares.ExceptionHandlerMiddleware">
+            <summary>
+            Middleware для глобальной обработки исключений.
+            </summary>
+        </member>
+        <member name="M:NightTasker.Passport.Presentation.Middlewares.ExceptionHandlerMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger{NightTasker.Passport.Presentation.Middlewares.ExceptionHandlerMiddleware})">
             <summary>
             Middleware для глобальной обработки исключений.
             </summary>

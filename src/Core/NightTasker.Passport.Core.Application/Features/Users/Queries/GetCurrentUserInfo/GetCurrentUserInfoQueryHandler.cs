@@ -10,22 +10,16 @@ namespace NightTasker.Passport.Application.Features.Users.Queries.GetCurrentUser
 /// <summary>
 /// Хэндлер запроса для получения информации о текущем пользователе.
 /// </summary>
-public class GetCurrentUserInfoQueryHandler : IRequestHandler<GetCurrentUserInfoQuery, CurrentUserInfo>
-{
-    private readonly IIdentityService _identityService;
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IMapper _mapper;
-
-    public GetCurrentUserInfoQueryHandler(
+public class GetCurrentUserInfoQueryHandler(
         IIdentityService identityService,
         IUnitOfWork unitOfWork,
         IMapper mapper)
-    {
-        _identityService = identityService ?? throw new ArgumentNullException(nameof(identityService));
-        _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
-        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-    }
-    
+    : IRequestHandler<GetCurrentUserInfoQuery, CurrentUserInfo>
+{
+    private readonly IIdentityService _identityService = identityService ?? throw new ArgumentNullException(nameof(identityService));
+    private readonly IUnitOfWork _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+    private readonly IMapper _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+
     public async Task<CurrentUserInfo> Handle(GetCurrentUserInfoQuery request, CancellationToken cancellationToken)
     {
         if (!_identityService.IsAuthenticated || !_identityService.CurrentUserId.HasValue)

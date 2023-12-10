@@ -8,5 +8,5 @@ public interface IPublicException
     /// <summary>
     /// Сообщение для отображения.
     /// </summary>
-    string DisplayMessage { get; init; }
+    string DisplayMessage { get; }
 }

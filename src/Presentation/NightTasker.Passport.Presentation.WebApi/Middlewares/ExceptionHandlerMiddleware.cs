@@ -6,29 +6,20 @@ namespace NightTasker.Passport.Presentation.Middlewares;
 /// <summary>
 /// Middleware для глобальной обработки исключений.
 /// </summary>
-public class ExceptionHandlerMiddleware
+public class ExceptionHandlerMiddleware(
+    RequestDelegate next,
+    ILogger<ExceptionHandlerMiddleware> logger)
 {
-    private readonly RequestDelegate _next;
-    private readonly ILogger<ExceptionHandlerMiddleware> _logger;
-
-    public ExceptionHandlerMiddleware(
-        RequestDelegate next,
-        ILogger<ExceptionHandlerMiddleware> logger)
-    {
-        _next = next;
-        _logger = logger;
-    }
-    
     public async Task InvokeAsync(HttpContext context)
     {
         try
         {
-            await _next(context);
+            await next(context);
         }
         catch (Exception exception)
         {
             await HandleException(context, exception);
-            _logger.LogError(exception.ToString());
+            logger.LogError(exception.ToString());
         }
     }
 

@@ -7,7 +7,7 @@ public class ErrorDetails
 {
     public string Message { get; set; } = null!;
 
-    public string? DisplayMessage { get; set; } = null!;
+    public string? DisplayMessage { get; set; }
 
     public string TraceId { get; set; } = null!;
 

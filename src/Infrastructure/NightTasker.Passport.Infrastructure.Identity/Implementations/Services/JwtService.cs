@@ -15,25 +15,17 @@ using NightTasker.Passport.Infrastructure.Identity.Identity.Settings;
 namespace NightTasker.Passport.Infrastructure.Identity.Implementations.Services;
 
 /// <inheritdoc />
-public class JwtService : IJwtService
-{
-    private readonly IdentitySettings _siteSetting;
-    private readonly IUserClaimsPrincipalFactory<User> _claimsPrincipal;
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly ILogger<JwtService> _logger;
-
-    public JwtService(
-        IOptions<IdentitySettings> siteSettings, 
-        IUserClaimsPrincipalFactory<User> claimsPrincipal, 
+public class JwtService(IOptions<IdentitySettings> siteSettings,
+        IUserClaimsPrincipalFactory<User> claimsPrincipal,
         IUnitOfWork unitOfWork,
         ILogger<JwtService> logger)
-    {
-        _siteSetting = siteSettings.Value ?? throw new ArgumentNullException(nameof(siteSettings));
-        _claimsPrincipal = claimsPrincipal ?? throw new ArgumentNullException(nameof(claimsPrincipal));
-        _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-    }
-    
+    : IJwtService
+{
+    private readonly IdentitySettings _siteSetting = siteSettings.Value ?? throw new ArgumentNullException(nameof(siteSettings));
+    private readonly IUserClaimsPrincipalFactory<User> _claimsPrincipal = claimsPrincipal ?? throw new ArgumentNullException(nameof(claimsPrincipal));
+    private readonly IUnitOfWork _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+    private readonly ILogger<JwtService> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+
     /// <inheritdoc />
     public async Task<JwtAccessToken> GenerateAsync(User user, CancellationToken cancellationToken)
     {

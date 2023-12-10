@@ -22,7 +22,10 @@ builder.Services
     .RegisterPersistenceServices(builder.Configuration)
     .RegisterApiServices();
 
-builder.Services.AddSwagger();
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddSwagger();
+}
 
 builder.Services.AddValidation();
 
@@ -34,7 +37,10 @@ await app.ApplyDatabaseMigrationsAsync(CancellationToken.None);
 
 app.UseSerilogRequestLogging();
 
-app.ConfigureSwagger(); 
+if (builder.Environment.IsDevelopment())
+{
+    app.ConfigureSwagger(); 
+}
 
 app.UseMiddleware<ExceptionHandlerMiddleware>();
 

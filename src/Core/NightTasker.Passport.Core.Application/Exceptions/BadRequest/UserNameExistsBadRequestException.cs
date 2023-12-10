@@ -5,12 +5,8 @@ namespace NightTasker.Passport.Application.Exceptions.BadRequest;
 /// <summary>
 /// Публичное исключение при совпадении имени пользователя.
 /// </summary>
-public class UserNameExistsBadRequestException : BadRequestException, IPublicException
+public class UserNameExistsBadRequestException(string username) : BadRequestException(
+    $"User with {username} exists yet"), IPublicException
 {
-    public UserNameExistsBadRequestException(string username) : base($"User with {username} exists yet")
-    {
-        DisplayMessage = $"Пользователь с таким именем уже существует";
-    }
-
-    public string DisplayMessage { get; init; }
+    public string DisplayMessage { get; init; } = $"Пользователь с таким именем уже существует";
 }

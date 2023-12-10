@@ -19,18 +19,10 @@ namespace NightTasker.Passport.Presentation.Controllers.V1;
 /// </summary>
 [ApiController]
 [Route($"{ApiConstants.DefaultPrefix}/{ApiConstants.V1}/{UsersEndpoints.UsersResource}")]
-public class UsersController : ControllerBase
+public class UsersController(IMediator mediator, IMapper mapper) : ControllerBase
 {
-    private readonly IMediator _mediator;
-    private readonly IMapper _mapper;
-
-    public UsersController(
-        IMediator mediator,
-        IMapper mapper)
-    {
-        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
-        _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-    }
+    private readonly IMediator _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+    private readonly IMapper _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
 
     /// <summary>
     /// Создание пользователя.
