@@ -5,20 +5,20 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["Presentation/NightTasker.Passport.Presentation.WebApi/NightTasker.Passport.Presentation.WebApi.csproj", "Presentation/NightTasker.Passport.Presentation.WebApi/"]
-COPY ["Infrastructure/NightTasker.Passport.Infrastructure.Identity/NightTasker.Passport.Infrastructure.Identity.csproj", "Infrastructure/NightTasker.Passport.Infrastructure.Identity/"]
-COPY ["Core/NightTasker.Passport.Core.Application/NightTasker.Passport.Core.Application.csproj", "Core/NightTasker.Passport.Core.Application/"]
-COPY ["Core/NightTasker.Passport.Core.Domain/NightTasker.Passport.Core.Domain.csproj", "Core/NightTasker.Passport.Core.Domain/"]
-COPY ["Infrastructure/NightTasker.Passport.Infrastructure.Persistence/NightTasker.Passport.Infrastructure.Persistence.csproj", "Infrastructure/NightTasker.Passport.Infrastructure.Persistence/"]
-RUN dotnet restore "Presentation/NightTasker.Passport.Presentation.WebApi/NightTasker.Passport.Presentation.WebApi.csproj"
+COPY ["Presentation/NightTasker.Identity.Presentation.WebApi/NightTasker.Identity.Presentation.WebApi.csproj", "Presentation/NightTasker.Identity.Presentation.WebApi/"]
+COPY ["Infrastructure/NightTasker.Identity.Infrastructure.Identity/NightTasker.Identity.Infrastructure.Identity.csproj", "Infrastructure/NightTasker.Identity.Infrastructure.Identity/"]
+COPY ["Core/NightTasker.Identity.Core.Application/NightTasker.Identity.Core.Application.csproj", "Core/NightTasker.Identity.Core.Application/"]
+COPY ["Core/NightTasker.Identity.Core.Domain/NightTasker.Identity.Core.Domain.csproj", "Core/NightTasker.Identity.Core.Domain/"]
+COPY ["Infrastructure/NightTasker.Identity.Infrastructure.Persistence/NightTasker.Identity.Infrastructure.Persistence.csproj", "Infrastructure/NightTasker.Identity.Infrastructure.Persistence/"]
+RUN dotnet restore "Presentation/NightTasker.Identity.Presentation.WebApi/NightTasker.Identity.Presentation.WebApi.csproj"
 COPY . .
-WORKDIR "/src/Presentation/NightTasker.Passport.Presentation.WebApi"
-RUN dotnet build "NightTasker.Passport.Presentation.WebApi.csproj" -c Release -o /app/build
+WORKDIR "/src/Presentation/NightTasker.Identity.Presentation.WebApi"
+RUN dotnet build "NightTasker.Identity.Presentation.WebApi.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "NightTasker.Passport.Presentation.WebApi.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "NightTasker.Identity.Presentation.WebApi.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "NightTasker.Passport.Presentation.WebApi.dll"]
+ENTRYPOINT ["dotnet", "NightTasker.Identity.Presentation.WebApi.dll"]

@@ -4,9 +4,9 @@ using FluentValidation.AspNetCore;
 using Mapster;
 using MapsterMapper;
 using Microsoft.OpenApi.Models;
-using NightTasker.Identity.Application.ApplicationContracts.Identity;
+using NightTasker.Common.Core.Identity.Contracts;
+using NightTasker.Common.Core.Identity.Implementations;
 using NightTasker.Identity.Presentation.WebApi.Constants;
-using NightTasker.Identity.Presentation.WebApi.Services;
 
 namespace NightTasker.Identity.Presentation.WebApi.Configuration;
 

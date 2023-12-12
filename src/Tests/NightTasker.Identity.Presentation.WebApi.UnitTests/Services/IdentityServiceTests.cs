@@ -2,7 +2,7 @@ using System.Security.Claims;
 using Bogus;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
-using NightTasker.Identity.Presentation.WebApi.Services;
+using NightTasker.Common.Core.Identity.Implementations;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 

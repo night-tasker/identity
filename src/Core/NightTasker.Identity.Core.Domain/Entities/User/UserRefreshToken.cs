@@ -1,4 +1,4 @@
-﻿using NightTasker.Identity.Domain.Entities.Common;
+﻿using NightTasker.Common.Core.Abstractions;
 
 namespace NightTasker.Identity.Domain.Entities.User;
 

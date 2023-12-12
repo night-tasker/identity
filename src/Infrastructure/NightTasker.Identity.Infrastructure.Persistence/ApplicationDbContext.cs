@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using NightTasker.Identity.Application.Common.Extensions;
-using NightTasker.Identity.Domain.Entities.Common;
+using NightTasker.Common.Core.Abstractions;
+using NightTasker.Common.Core.Extensions;
 using NightTasker.Identity.Domain.Entities.User;
 
 namespace NightTasker.Identity.Infrastructure.Persistence;

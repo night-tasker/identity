@@ -1,5 +1,6 @@
 ﻿using MapsterMapper;
 using MediatR;
+using NightTasker.Common.Core.Identity.Contracts;
 using NightTasker.Identity.Application.ApplicationContracts.Identity;
 using NightTasker.Identity.Application.ApplicationContracts.Persistence;
 using NightTasker.Identity.Application.Exceptions.Unauthorized;

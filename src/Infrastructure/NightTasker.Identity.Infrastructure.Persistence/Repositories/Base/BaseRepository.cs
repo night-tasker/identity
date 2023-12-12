@@ -1,8 +1,8 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
+using NightTasker.Common.Core.Abstractions;
 using NightTasker.Identity.Application.ApplicationContracts.Persistence;
-using NightTasker.Identity.Domain.Entities.Common;
 
 namespace NightTasker.Identity.Infrastructure.Persistence.Repositories.Base;
 

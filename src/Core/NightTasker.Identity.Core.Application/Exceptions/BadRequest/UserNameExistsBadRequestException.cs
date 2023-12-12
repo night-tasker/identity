@@ -1,4 +1,4 @@
-﻿using NightTasker.Identity.Application.Exceptions.Base;
+﻿using NightTasker.Common.Core.Exceptions.Base;
 
 namespace NightTasker.Identity.Application.Exceptions.BadRequest;
 

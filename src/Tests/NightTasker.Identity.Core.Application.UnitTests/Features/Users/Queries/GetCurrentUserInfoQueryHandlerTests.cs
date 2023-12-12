@@ -1,6 +1,6 @@
 ﻿using Bogus;
 using MapsterMapper;
-using NightTasker.Identity.Application.ApplicationContracts.Identity;
+using NightTasker.Common.Core.Identity.Contracts;
 using NightTasker.Identity.Application.ApplicationContracts.Persistence;
 using NightTasker.Identity.Application.Exceptions.Unauthorized;
 using NightTasker.Identity.Application.Features.Users.Queries.GetCurrentUserInfo;

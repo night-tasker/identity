@@ -1,10 +1,10 @@
+using NightTasker.Common.Core.Exceptions.Middlewares;
 using NightTasker.Identity.Application.Configuration;
 using NightTasker.Identity.Infrastructure.Identity.Configuration;
 using NightTasker.Identity.Infrastructure.Identity.Identity.Settings;
 using NightTasker.Identity.Infrastructure.Persistence.Configuration;
 using NightTasker.Identity.Presentation.WebApi.Configuration;
 using NightTasker.Identity.Presentation.WebApi.Constants;
-using NightTasker.Identity.Presentation.WebApi.Middlewares;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
