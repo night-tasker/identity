@@ -1,4 +1,5 @@
-﻿using NightTasker.Identity.Domain.Entities.User;
+﻿using NightTasker.Common.Core.Persistence.Repository;
+using NightTasker.Identity.Domain.Entities.User;
 
 namespace NightTasker.Identity.Application.ApplicationContracts.Persistence;
 

@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NightTasker.Common.Core.Persistence.Repository;
 using NightTasker.Identity.Application.ApplicationContracts.Persistence;
 using NightTasker.Identity.Domain.Entities.User;
-using NightTasker.Identity.Infrastructure.Persistence.Repositories.Base;
 
 namespace NightTasker.Identity.Infrastructure.Persistence.Repositories;
 
 /// <inheritdoc cref="IUserRefreshTokenRepository"/> 
-internal class UserRefreshTokenRepository : BaseRepository<UserRefreshToken, Guid>, IUserRefreshTokenRepository
+internal class UserRefreshTokenRepository : BaseRepository<UserRefreshToken, Guid, ApplicationDbContext>, IUserRefreshTokenRepository
 {
     
     public UserRefreshTokenRepository(ApplicationDbContext context) : base(context)

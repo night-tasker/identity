@@ -7,7 +7,7 @@ using NightTasker.Identity.Domain.Entities.User;
 namespace NightTasker.Identity.Infrastructure.Persistence;
 
 /// <summary>
-/// Контекст для работы с данными.
+/// Контекст для работы с базой данных.
 /// </summary>
 public class ApplicationDbContext : IdentityDbContext<User, Role, Guid, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>
 {

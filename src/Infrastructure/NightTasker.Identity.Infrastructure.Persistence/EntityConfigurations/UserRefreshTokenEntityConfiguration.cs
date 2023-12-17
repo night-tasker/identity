@@ -5,7 +5,7 @@ using NightTasker.Identity.Domain.Entities.User;
 namespace NightTasker.Identity.Infrastructure.Persistence.EntityConfigurations;
 
 /// <summary>
-/// Конфигурация рефреш-токена пользователя.
+/// Конфигурация сущности <see cref="UserRefreshToken"/>.
 /// </summary>
 public class UserRefreshTokenEntityConfiguration : IEntityTypeConfiguration<UserRefreshToken>
 {
