@@ -1,7 +1,10 @@
 ﻿using MapsterMapper;
+using MassTransit;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using NightTasker.Common.Messaging.Events.Contracts;
+using NightTasker.Common.Messaging.Events.Implementations;
 using NightTasker.Identity.Application.ApplicationContracts.Identity;
 using NightTasker.Identity.Application.Exceptions.BadRequest;
 using NightTasker.Identity.Application.Exceptions.Unauthorized;
@@ -14,12 +17,16 @@ namespace NightTasker.Identity.Infrastructure.Identity.Implementations.Services;
 /// <inheritdoc />
 public class UserService(IAppUserManager userManager,
         IMapper mapper,
-        ILogger<UserService> logger)
+        ILogger<UserService> logger,
+        IPublishEndpoint publishEndpoint)
     : IUserService
 {
     private readonly IAppUserManager _appUserManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
     private readonly IMapper _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     private readonly ILogger<UserService> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+
+    private readonly IPublishEndpoint _publishEndpoint =
+        publishEndpoint ?? throw new ArgumentNullException(nameof(publishEndpoint));
 
     /// <inheritdoc />
     public async Task<IdentityResult> CreateUser(CreateUserDto userDto, CancellationToken cancellationToken)
@@ -45,6 +52,10 @@ public class UserService(IAppUserManager userManager,
         }
         
         _logger.LogInformation("[COMPLETED] Create user with username {UserName}", userDto.UserName);
+
+        var userRegistered = new UserRegistered(user.Id, user.UserName!);
+        await _publishEndpoint.Publish<IUserRegistered>(userRegistered, cancellationToken);
+        
         return IdentityResult.Success;
     }
 

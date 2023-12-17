@@ -1,6 +1,7 @@
 ﻿using Bogus;
 using FluentAssertions;
 using MapsterMapper;
+using MassTransit;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using MockQueryable.NSubstitute;
@@ -28,7 +29,7 @@ public class UserServiceTests
         _appUserManager = Substitute.For<IAppUserManager>();
         _mapper = Substitute.For<IMapper>();
         _logger = Substitute.For<ILogger<UserService>>();
-        _sut = new UserService(_appUserManager, _mapper, _logger);
+        _sut = new UserService(_appUserManager, _mapper, _logger, Substitute.For<IPublishEndpoint>());
         _faker = new Faker();
     }
 

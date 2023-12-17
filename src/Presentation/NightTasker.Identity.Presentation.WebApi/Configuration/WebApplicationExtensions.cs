@@ -1,4 +1,5 @@
-﻿using NightTasker.Identity.Infrastructure.Persistence;
+﻿using Microsoft.EntityFrameworkCore;
+using NightTasker.Identity.Infrastructure.Persistence;
 using NightTasker.Identity.Infrastructure.Persistence.Configuration;
 
 namespace NightTasker.Identity.Presentation.WebApi.Configuration;
@@ -32,6 +33,9 @@ public static class WebApplicationExtensions
     {
         await using var scope = app.Services.CreateAsyncScope();
         var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-        await context.MigrateAsync(cancellationToken);
+        if ((await context.Database.GetPendingMigrationsAsync(cancellationToken)).Any())
+        {
+            await context.MigrateAsync(cancellationToken);
+        }
     }
 }

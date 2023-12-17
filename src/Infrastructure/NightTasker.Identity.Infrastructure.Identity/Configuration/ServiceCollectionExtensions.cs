@@ -3,6 +3,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
@@ -27,8 +28,14 @@ public static class ServiceCollectionExtensions
     /// <summary>
     /// Зарегистрировать сервисы Infrastructure.Identity слоя.
     /// </summary>
-    public static IServiceCollection RegisterIdentityServices(this IServiceCollection services, IdentitySettings identitySettings)
+    public static IServiceCollection RegisterIdentityServices(
+        this IServiceCollection services, 
+        IConfiguration configuration)
     {
+        var identitySettingsSection = configuration.GetSection(nameof(IdentitySettings));
+        var identitySettings = identitySettingsSection.Get<IdentitySettings>()!;
+        services.Configure<IdentitySettings>(identitySettingsSection);
+        
         services.AddScoped<IUserValidator<User>, AppUserValidator>();
         services.AddScoped<UserValidator<User>, AppUserValidator>();
         

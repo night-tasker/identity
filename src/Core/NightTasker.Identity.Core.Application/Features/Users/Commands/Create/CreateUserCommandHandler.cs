@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using MassTransit;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using NightTasker.Identity.Application.ApplicationContracts.Identity;
@@ -9,7 +10,8 @@ namespace NightTasker.Identity.Application.Features.Users.Commands.Create;
 /// <summary>
 /// Хэндлер для команды на создание пользователя.
 /// </summary>
-public class CreateUserCommandHandler(IUserService userService) : IRequestHandler<CreateUserCommand, IdentityResult>
+public class CreateUserCommandHandler(
+    IUserService userService) : IRequestHandler<CreateUserCommand, IdentityResult>
 {
     private readonly IUserService _userService = userService ?? throw new ArgumentNullException(nameof(userService));
 

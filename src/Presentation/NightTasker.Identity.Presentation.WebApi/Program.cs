@@ -2,6 +2,7 @@ using NightTasker.Common.Core.Exceptions.Middlewares;
 using NightTasker.Identity.Application.Configuration;
 using NightTasker.Identity.Infrastructure.Identity.Configuration;
 using NightTasker.Identity.Infrastructure.Identity.Identity.Settings;
+using NightTasker.Identity.Infrastructure.Messaging.Configuration;
 using NightTasker.Identity.Infrastructure.Persistence.Configuration;
 using NightTasker.Identity.Presentation.WebApi.Configuration;
 using NightTasker.Identity.Presentation.WebApi.Constants;
@@ -11,15 +12,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
 
-builder.Services.Configure<IdentitySettings>(builder.Configuration.GetSection(nameof(IdentitySettings)));
-var identitySettings = builder.Configuration.GetSection(nameof(IdentitySettings)).Get<IdentitySettings>()!;
+builder.AddOptions();
 
 builder.Services.AddControllers();
 
 builder.Services
     .RegisterApplicationServices()
-    .RegisterIdentityServices(identitySettings)
+    .RegisterIdentityServices(builder.Configuration)
     .RegisterPersistenceServices(builder.Configuration)
+    .RegisterMessagingServices(builder.Configuration)
     .RegisterApiServices();
 
 if (builder.Environment.IsDevelopment())

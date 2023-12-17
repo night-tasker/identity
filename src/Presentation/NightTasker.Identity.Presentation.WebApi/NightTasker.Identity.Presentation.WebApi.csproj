@@ -13,13 +13,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\..\Infrastructure\NightTasker.Identity.Infrastructure.Identity\NightTasker.Identity.Infrastructure.Identity.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\NightTasker.Identity.Infrastructure.Messaging\NightTasker.Identity.Infrastructure.Messaging.csproj" />
       <ProjectReference Include="..\..\Infrastructure\NightTasker.Identity.Infrastructure.Persistence\NightTasker.Identity.Infrastructure.Persistence.csproj" />
     </ItemGroup>
 
@@ -37,9 +32,6 @@
 
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Services\" />
-    </ItemGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
         <NoWarn>1701;1702;1705;1591</NoWarn>

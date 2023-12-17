@@ -9,7 +9,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Core\NightTasker.Identity.Core.Application\NightTasker.Identity.Core.Application.csproj" />
-      <ProjectReference Include="..\..\Core\NightTasker.Identity.Core.Domain\NightTasker.Identity.Core.Domain.csproj" />
     </ItemGroup>
 
     <ItemGroup>
