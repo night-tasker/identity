@@ -20,10 +20,10 @@ public interface IUserService
     /// <summary>
     /// Проверить существует ли пользователь с данным именем.
     /// </summary>
-    /// <param name="username">Имя пользователя.</param>
+    /// <param name="userName">Имя пользователя.</param>
     /// <param name="cancellationToken">Токен отмены.</param>
     /// <returns>Результат проверки.</returns>
-    Task<bool> IsUserNameExist(string username, CancellationToken cancellationToken);
+    Task<bool> IsUserNameExist(string userName, CancellationToken cancellationToken);
 
     /// <summary>
     /// Проверить данные пользователя на вход.

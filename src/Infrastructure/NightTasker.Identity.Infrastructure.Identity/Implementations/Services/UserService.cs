@@ -60,9 +60,10 @@ public class UserService(IAppUserManager userManager,
     }
 
     /// <inheritdoc />
-    public Task<bool> IsUserNameExist(string? username, CancellationToken cancellationToken)
+    public async Task<bool> IsUserNameExist(string userName, CancellationToken cancellationToken)
     {
-        return _appUserManager.Users.AnyAsync(x => x.UserName != null && x.UserName.Equals(username), cancellationToken);
+        var user = await _appUserManager.FindByNameAsync(userName);
+        return user is not null;
     }
 
     /// <inheritdoc />

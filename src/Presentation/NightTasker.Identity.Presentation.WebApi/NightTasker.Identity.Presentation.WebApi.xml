@@ -136,37 +136,6 @@
             Путь для обновления токена доступа пользователя.
             </summary>
         </member>
-        <member name="T:NightTasker.Identity.Presentation.WebApi.Middlewares.ExceptionHandlerMiddleware">
-            <summary>
-            Middleware для глобальной обработки исключений.
-            </summary>
-        </member>
-        <member name="M:NightTasker.Identity.Presentation.WebApi.Middlewares.ExceptionHandlerMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger{NightTasker.Identity.Presentation.WebApi.Middlewares.ExceptionHandlerMiddleware})">
-            <summary>
-            Middleware для глобальной обработки исключений.
-            </summary>
-        </member>
-        <member name="M:NightTasker.Identity.Presentation.WebApi.Middlewares.ExceptionHandlerMiddleware.HandleException(Microsoft.AspNetCore.Http.HttpContext,System.Exception)">
-            <summary>
-            Обработать исключение
-            </summary>
-            <param name="context">HTTP-контекст.</param>
-            <param name="exception">Исключение.</param>
-        </member>
-        <member name="M:NightTasker.Identity.Presentation.WebApi.Middlewares.ExceptionHandlerMiddleware.ResolveStatusCode(System.Exception)">
-            <summary>
-            Разрешить статус-код, исходя из исключения.
-            </summary>
-            <param name="exception">Исключение.</param>
-            <returns>Код.</returns>
-        </member>
-        <member name="M:NightTasker.Identity.Presentation.WebApi.Middlewares.ExceptionHandlerMiddleware.ResolveDisplayMessage(System.Exception)">
-            <summary>
-            Разрешить сообщение для отображения, исходя из исключения.
-            </summary>
-            <param name="exception">Исключение.</param>
-            <returns>Сообщение для отображения.</returns>
-        </member>
         <member name="T:NightTasker.Identity.Presentation.WebApi.Profiles.User.RefreshTokenProfile">
             <summary>
             Профиль маппов для рефреш-токена.
@@ -236,15 +205,6 @@
         </member>
         <member name="P:NightTasker.Identity.Presentation.WebApi.Requests.User.RefreshTokenRequest.RefreshToken">
             <summary>Рефреш-токен пользователя.</summary>
-        </member>
-        <member name="T:NightTasker.Identity.Presentation.WebApi.Services.IdentityService">
-            <inheritdoc />
-        </member>
-        <member name="P:NightTasker.Identity.Presentation.WebApi.Services.IdentityService.CurrentUserId">
-            <inheritdoc />
-        </member>
-        <member name="P:NightTasker.Identity.Presentation.WebApi.Services.IdentityService.IsAuthenticated">
-            <inheritdoc />
         </member>
         <member name="T:NightTasker.Identity.Presentation.WebApi.Validators.User.CreateUserRequestValidator">
             <summary>

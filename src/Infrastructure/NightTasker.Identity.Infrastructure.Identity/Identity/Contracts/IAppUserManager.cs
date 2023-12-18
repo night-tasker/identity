@@ -10,6 +10,8 @@ public interface IAppUserManager
     Task<bool> CheckPasswordAsync(User user, string password);
 
     Task<IdentityResult> CreateAsync(User user);
+
+    Task<User?> FindByNameAsync(string userName);
     
     IQueryable<User> Users { get; }
 }
