@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NightTasker.Identity.Infrastructure.Persistence;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NightTasker.Identity.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231224170730_ChangeUpdatedDateTimeOffset")]
+    partial class ChangeUpdatedDateTimeOffset
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,7 +62,7 @@ namespace NightTasker.Identity.Infrastructure.Migrations
                         .IsUnique()
                         .HasDatabaseName("role_name_index");
 
-                    b.ToTable("roles", (string)null);
+                    b.ToTable("asp_net_roles", (string)null);
                 });
 
             modelBuilder.Entity("NightTasker.Identity.Domain.Entities.User.RoleClaim", b =>
@@ -97,7 +100,7 @@ namespace NightTasker.Identity.Infrastructure.Migrations
                     b.HasIndex("RoleId")
                         .HasDatabaseName("ix_asp_net_role_claims_role_id");
 
-                    b.ToTable("role_claims", (string)null);
+                    b.ToTable("asp_net_role_claims", (string)null);
                 });
 
             modelBuilder.Entity("NightTasker.Identity.Domain.Entities.User.User", b =>
@@ -186,7 +189,7 @@ namespace NightTasker.Identity.Infrastructure.Migrations
                         .IsUnique()
                         .HasDatabaseName("user_name_index");
 
-                    b.ToTable("users", (string)null);
+                    b.ToTable("asp_net_users", (string)null);
                 });
 
             modelBuilder.Entity("NightTasker.Identity.Domain.Entities.User.UserClaim", b =>
@@ -224,7 +227,7 @@ namespace NightTasker.Identity.Infrastructure.Migrations
                     b.HasIndex("UserId")
                         .HasDatabaseName("ix_asp_net_user_claims_user_id");
 
-                    b.ToTable("user_claims", (string)null);
+                    b.ToTable("asp_net_user_claims", (string)null);
                 });
 
             modelBuilder.Entity("NightTasker.Identity.Domain.Entities.User.UserLogin", b =>
@@ -259,7 +262,7 @@ namespace NightTasker.Identity.Infrastructure.Migrations
                     b.HasIndex("UserId")
                         .HasDatabaseName("ix_asp_net_user_logins_user_id");
 
-                    b.ToTable("user_logins", (string)null);
+                    b.ToTable("asp_net_user_logins", (string)null);
                 });
 
             modelBuilder.Entity("NightTasker.Identity.Domain.Entities.User.UserRefreshToken", b =>
@@ -282,12 +285,12 @@ namespace NightTasker.Identity.Infrastructure.Migrations
                         .HasColumnName("user_id");
 
                     b.HasKey("Id")
-                        .HasName("pk_user_refresh_tokens");
+                        .HasName("pk_user_refresh_token");
 
                     b.HasIndex("UserId")
-                        .HasDatabaseName("ix_user_refresh_tokens_user_id");
+                        .HasDatabaseName("ix_user_refresh_token_user_id");
 
-                    b.ToTable("user_refresh_tokens", (string)null);
+                    b.ToTable("user_refresh_token", (string)null);
                 });
 
             modelBuilder.Entity("NightTasker.Identity.Domain.Entities.User.UserRole", b =>
@@ -314,7 +317,7 @@ namespace NightTasker.Identity.Infrastructure.Migrations
                     b.HasIndex("RoleId")
                         .HasDatabaseName("ix_asp_net_user_roles_role_id");
 
-                    b.ToTable("user_roles", (string)null);
+                    b.ToTable("asp_net_user_roles", (string)null);
                 });
 
             modelBuilder.Entity("NightTasker.Identity.Domain.Entities.User.UserToken", b =>
@@ -342,7 +345,7 @@ namespace NightTasker.Identity.Infrastructure.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name")
                         .HasName("pk_asp_net_user_tokens");
 
-                    b.ToTable("user_tokens", (string)null);
+                    b.ToTable("asp_net_user_tokens", (string)null);
                 });
 
             modelBuilder.Entity("NightTasker.Identity.Domain.Entities.User.RoleClaim", b =>
@@ -382,7 +385,7 @@ namespace NightTasker.Identity.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fk_user_refresh_tokens_users_user_id");
+                        .HasConstraintName("fk_user_refresh_token_asp_net_users_user_id");
 
                     b.Navigation("User");
                 });

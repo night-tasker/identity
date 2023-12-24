@@ -6,7 +6,9 @@ using MapsterMapper;
 using Microsoft.OpenApi.Models;
 using NightTasker.Common.Core.Identity.Contracts;
 using NightTasker.Common.Core.Identity.Implementations;
+using NightTasker.Identity.Infrastructure.Persistence.Contracts;
 using NightTasker.Identity.Presentation.WebApi.Constants;
+using NightTasker.Identity.Presentation.WebApi.Implementations;
 
 namespace NightTasker.Identity.Presentation.WebApi.Configuration;
 
@@ -23,6 +25,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddHttpContextAccessor();
         services.AddScoped<IIdentityService, IdentityService>();
+        services.AddScoped<IApplicationDbAccessor, ApplicationDbAccessor>();
         services.AddMapper();
     }
     

@@ -44,7 +44,7 @@ public class JwtService(IOptions<IdentitySettings> siteSettings,
             Audience = _siteSetting.Audience,
             IssuedAt = DateTime.Now,
             NotBefore = DateTime.Now.AddMinutes(0),
-            Expires = DateTime.Now.AddSeconds(_siteSetting.ExpirationMinutes),
+            Expires = DateTime.Now.AddMinutes(_siteSetting.ExpirationMinutes),
             SigningCredentials = signingCredentials,
             EncryptingCredentials = encryptingCredentials,
             Subject = new ClaimsIdentity(claims)

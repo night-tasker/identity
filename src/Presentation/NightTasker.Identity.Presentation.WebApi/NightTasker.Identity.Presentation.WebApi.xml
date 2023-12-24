@@ -136,6 +136,15 @@
             Путь для обновления токена доступа пользователя.
             </summary>
         </member>
+        <member name="P:NightTasker.Identity.Presentation.WebApi.Implementations.ApplicationDbAccessor.UserRefreshTokens">
+            <inheritdoc />
+        </member>
+        <member name="P:NightTasker.Identity.Presentation.WebApi.Implementations.ApplicationDbAccessor.Users">
+            <inheritdoc />
+        </member>
+        <member name="M:NightTasker.Identity.Presentation.WebApi.Implementations.ApplicationDbAccessor.SaveChanges(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:NightTasker.Identity.Presentation.WebApi.Profiles.User.RefreshTokenProfile">
             <summary>
             Профиль маппов для рефреш-токена.

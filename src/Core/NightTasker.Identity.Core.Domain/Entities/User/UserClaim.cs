@@ -12,5 +12,5 @@ public class UserClaim : IdentityUserClaim<Guid>, IEntityWithId<int>, IDateTimeO
     public DateTimeOffset CreatedDateTimeOffset { get; set; }
     
     /// <inheritdoc />
-    public DateTimeOffset UpdatedDateTimeOffset { get; set; }
+    public DateTimeOffset? UpdatedDateTimeOffset { get; set; }
 }

@@ -11,6 +11,8 @@ public class UserRefreshTokenEntityConfiguration : IEntityTypeConfiguration<User
 {
     public void Configure(EntityTypeBuilder<UserRefreshToken> builder)
     {
+        builder.ToTable(name: "user_refresh_tokens");
+        
         builder.HasKey(x => x.Id);
         builder.HasOne(x => x.User)
             .WithMany()
