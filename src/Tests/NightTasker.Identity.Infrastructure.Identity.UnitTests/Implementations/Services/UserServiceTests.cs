@@ -11,6 +11,7 @@ using NightTasker.Identity.Domain.Entities.User;
 using NightTasker.Identity.Infrastructure.Identity.Identity.Contracts;
 using NightTasker.Identity.Infrastructure.Identity.Implementations.Services;
 using NSubstitute;
+using NSubstitute.ReturnsExtensions;
 
 namespace NightTasker.Identity.Infrastructure.Identity.UnitTests.Implementations.Services;
 
@@ -37,12 +38,10 @@ public class UserServiceTests
     public void CreateUser_UserNameExists_UserNameExistsBadRequestException()
     {
         // Arrange
-        var userName = _faker.Random.String();
+        var userName = _faker.Random.AlphaNumeric(8);
         var password = _faker.Random.String();
         var user = new User(userName);
-        var users = new List<User> { user };
-        var mockUsers = users.BuildMock();
-        _appUserManager.Users.Returns(mockUsers);
+        _appUserManager.FindByNameAsync(userName).Returns(user);
         var createUserDto = new CreateUserDto(userName, password);
 
         // Act
@@ -58,8 +57,7 @@ public class UserServiceTests
         // Arrange
         var userName = _faker.Random.String();
         var password = _faker.Random.String();
-        var mockUsers = new List<User>().BuildMock();
-        _appUserManager.Users.Returns(mockUsers);
+        _appUserManager.FindByNameAsync(userName).ReturnsNull();
         var createUserDto = new CreateUserDto(userName, password);
 
         var createUserError = new IdentityError()
@@ -91,9 +89,9 @@ public class UserServiceTests
         // Arrange
         var userName = _faker.Random.String();
         var password = _faker.Random.String();
-        var mockUsers = new List<User>().BuildMock();
-        _appUserManager.Users.Returns(mockUsers);
+        _appUserManager.FindByNameAsync(userName).ReturnsNull();
         var createUserDto = new CreateUserDto(userName, password);
+        _mapper.Map<User>(createUserDto).Returns(new User(userName));
         _appUserManager.CreateAsync(Arg.Any<User>())
             .Returns(IdentityResult.Success);
 
@@ -101,7 +99,7 @@ public class UserServiceTests
             .Returns(IdentityResult.Success);
 
         // Act
-        var result =  await _sut.CreateUser(createUserDto, CancellationToken.None);
+        var result = await _sut.CreateUser(createUserDto, CancellationToken.None);
 
         // Assert
         result.Succeeded.Should().BeTrue();

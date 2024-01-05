@@ -39,7 +39,10 @@ public class JwtServiceTests
     {
         // Arrange
         var refreshToken = _faker.Random.Guid();
-        _unitOfWork.UserRefreshTokenRepository.TryGetValidRefreshToken(refreshToken, Arg.Any<CancellationToken>())
+        _unitOfWork.UserRefreshTokenRepository.TryGetValidRefreshToken(
+                refreshToken, 
+                false,
+                Arg.Any<CancellationToken>())
             .ReturnsNull();
         
         // Act
@@ -54,9 +57,15 @@ public class JwtServiceTests
     {
         // Arrange
         var refreshToken = _faker.Random.Guid();
-        _unitOfWork.UserRefreshTokenRepository.TryGetValidRefreshToken(refreshToken, Arg.Any<CancellationToken>())
+        _unitOfWork.UserRefreshTokenRepository.TryGetValidRefreshToken(
+                refreshToken, 
+                false,
+                Arg.Any<CancellationToken>())
             .Returns(new UserRefreshToken());
-        _unitOfWork.UserRefreshTokenRepository.TryGetUserByRefreshToken(refreshToken, Arg.Any<CancellationToken>())
+        _unitOfWork.UserRefreshTokenRepository.TryGetUserByRefreshToken(
+                refreshToken, 
+                false,
+                Arg.Any<CancellationToken>())
             .ReturnsNull();
         
         // Act

@@ -14,21 +14,39 @@ internal class UserRefreshTokenRepository
     /// <inheritdoc /> 
     public async Task<Guid> CreateToken(Guid userId, CancellationToken cancellationToken)
     {
-        var token = new UserRefreshToken() { IsValid = true, UserId = userId };
+        var token = new UserRefreshToken { IsValid = true, UserId = userId };
         await Add(token, cancellationToken);
         return token.Id;
     }
     
     /// <inheritdoc /> 
-    public Task<UserRefreshToken?> TryGetValidRefreshToken(Guid refreshTokenId, CancellationToken cancellationToken)
+    public Task<UserRefreshToken?> TryGetValidRefreshToken(
+        Guid refreshTokenId, 
+        bool trackChanges,
+        CancellationToken cancellationToken)
     {
-        return Entities.FirstOrDefaultAsync(x => x.Id == refreshTokenId && x.IsValid, cancellationToken);
+        var query = Entities;
+        if (!trackChanges)
+        {
+            query = query.AsNoTracking();
+        }
+        
+        return query.FirstOrDefaultAsync(x => x.Id == refreshTokenId && x.IsValid, cancellationToken);
     }
     
     /// <inheritdoc /> 
-    public async Task<User?> TryGetUserByRefreshToken(Guid refreshTokenId, CancellationToken cancellationToken)
+    public async Task<User?> TryGetUserByRefreshToken(
+        Guid refreshTokenId, 
+        bool trackChanges,
+        CancellationToken cancellationToken)
     {
-        var refreshToken = await Entities
+        var query = Entities;
+        if (!trackChanges)
+        {
+            query = query.AsNoTracking();
+        }
+        
+        var refreshToken = await query
             .Include(x => x.User)
             .FirstOrDefaultAsync(x => x.Id == refreshTokenId, cancellationToken);
 

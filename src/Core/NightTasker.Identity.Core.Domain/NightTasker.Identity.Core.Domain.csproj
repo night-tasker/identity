@@ -9,7 +9,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="8.0.0" />
-        <PackageReference Include="NightTasker.Common.Core" Version="1.1.6" />
+        <PackageReference Include="NightTasker.Common.Core" Version="1.1.8" />
     </ItemGroup>
 
 </Project>

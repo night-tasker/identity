@@ -63,7 +63,10 @@ public class JwtService(IOptions<IdentitySettings> siteSettings,
     /// <inheritdoc />
     public async Task<JwtAccessToken> RefreshToken(Guid refreshTokenId, CancellationToken cancellationToken)
     {
-        var refreshToken = await _unitOfWork.UserRefreshTokenRepository.TryGetValidRefreshToken(refreshTokenId, cancellationToken);
+        var refreshToken = await _unitOfWork.UserRefreshTokenRepository.TryGetValidRefreshToken(
+            refreshTokenId, 
+            false,
+            cancellationToken);
 
         if (refreshToken is null)
         {
@@ -75,7 +78,10 @@ public class JwtService(IOptions<IdentitySettings> siteSettings,
 
         await _unitOfWork.SaveChanges(cancellationToken);
 
-        var user = await _unitOfWork.UserRefreshTokenRepository.TryGetUserByRefreshToken(refreshTokenId, cancellationToken);
+        var user = await _unitOfWork.UserRefreshTokenRepository.TryGetUserByRefreshToken(
+            refreshTokenId, 
+            false,
+            cancellationToken);
 
         if (user is null)
         {

@@ -6,6 +6,7 @@ using NightTasker.Identity.Infrastructure.Persistence.Contracts;
 
 namespace NightTasker.Identity.Presentation.WebApi.Implementations;
 
+/// <inheritdoc />
 public class ApplicationDbAccessor : IApplicationDbAccessor
 {
     private readonly ApplicationDbContext _dbContext;
@@ -26,12 +27,6 @@ public class ApplicationDbAccessor : IApplicationDbAccessor
     
     /// <inheritdoc />
     public ApplicationDbSet<User, Guid> Users { get; }
-    
-    /// <inheritdoc />
-    public Task SaveChanges(CancellationToken cancellationToken)
-    {
-        return _dbContext.SaveChangesAsync(cancellationToken);
-    }
 
     private IQueryable<UserRefreshToken> GetUserRefreshTokensQuery(IQueryable<UserRefreshToken> query)
     {
@@ -40,6 +35,11 @@ public class ApplicationDbAccessor : IApplicationDbAccessor
 
     private IQueryable<User> GetUsersQuery(IQueryable<User> query)
     {
+        if (_identityService.IsSystem)
+        {
+            return query;
+        }
+        
         if (_identityService.IsAuthenticated)
         {
             var currentUserId = _identityService.CurrentUserId!.Value;
@@ -50,4 +50,10 @@ public class ApplicationDbAccessor : IApplicationDbAccessor
     }
 
     private IQueryable<T> EmptyQuery<T>(IQueryable<T> query) => Enumerable.Empty<T>().AsQueryable();
+    
+    /// <inheritdoc />
+    public Task SaveChanges(CancellationToken cancellationToken)
+    {
+        return _dbContext.SaveChangesAsync(cancellationToken);
+    }
 }
