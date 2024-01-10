@@ -21,7 +21,6 @@ public class UserServiceTests
     private UserService _sut = null!;
     private IAppUserManager _appUserManager = null!;
     private IMapper _mapper = null!;
-    private ILogger<UserService> _logger = null!;
     private Faker _faker = null!;
 
     [SetUp]
@@ -29,8 +28,7 @@ public class UserServiceTests
     {
         _appUserManager = Substitute.For<IAppUserManager>();
         _mapper = Substitute.For<IMapper>();
-        _logger = Substitute.For<ILogger<UserService>>();
-        _sut = new UserService(_appUserManager, _mapper, _logger, Substitute.For<IPublishEndpoint>());
+        _sut = new UserService(_appUserManager, _mapper, Substitute.For<IPublishEndpoint>());
         _faker = new Faker();
     }
 
@@ -40,9 +38,10 @@ public class UserServiceTests
         // Arrange
         var userName = _faker.Random.AlphaNumeric(8);
         var password = _faker.Random.String();
+        var email = _faker.Internet.Email();
         var user = new User(userName);
         _appUserManager.FindByNameAsync(userName).Returns(user);
-        var createUserDto = new CreateUserDto(userName, password);
+        var createUserDto = new CreateUserDto(userName, email, password);
 
         // Act
         async Task TestDelegate() => await _sut.CreateUser(createUserDto, CancellationToken.None);
@@ -57,8 +56,9 @@ public class UserServiceTests
         // Arrange
         var userName = _faker.Random.String();
         var password = _faker.Random.String();
+        var email = _faker.Internet.Email();
         _appUserManager.FindByNameAsync(userName).ReturnsNull();
-        var createUserDto = new CreateUserDto(userName, password);
+        var createUserDto = new CreateUserDto(userName, email, password);
 
         var createUserError = new IdentityError()
             { Code = _faker.Random.Guid().ToString(), Description = _faker.Random.String() };
@@ -89,8 +89,9 @@ public class UserServiceTests
         // Arrange
         var userName = _faker.Random.String();
         var password = _faker.Random.String();
+        var email = $"{_faker.Random.AlphaNumeric(8)}@{_faker.Random.AlphaNumeric(8)}.com";
         _appUserManager.FindByNameAsync(userName).ReturnsNull();
-        var createUserDto = new CreateUserDto(userName, password);
+        var createUserDto = new CreateUserDto(userName, email, password);
         _mapper.Map<User>(createUserDto).Returns(new User(userName));
         _appUserManager.CreateAsync(Arg.Any<User>())
             .Returns(IdentityResult.Success);

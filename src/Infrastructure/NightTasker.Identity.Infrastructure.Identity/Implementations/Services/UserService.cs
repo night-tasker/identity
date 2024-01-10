@@ -17,13 +17,11 @@ namespace NightTasker.Identity.Infrastructure.Identity.Implementations.Services;
 /// <inheritdoc />
 public class UserService(IAppUserManager userManager,
         IMapper mapper,
-        ILogger<UserService> logger,
         IPublishEndpoint publishEndpoint)
     : IUserService
 {
     private readonly IAppUserManager _appUserManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
     private readonly IMapper _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-    private readonly ILogger<UserService> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
     private readonly IPublishEndpoint _publishEndpoint =
         publishEndpoint ?? throw new ArgumentNullException(nameof(publishEndpoint));
@@ -33,27 +31,21 @@ public class UserService(IAppUserManager userManager,
     {
         if (await IsUserNameExist(userDto.UserName, cancellationToken))
         {
-            _logger.LogInformation("User with username {UserName} exists", userDto.UserName);
             throw new UserNameExistsBadRequestException(userDto.UserName);
         }
         var user = _mapper.Map<User>(userDto);
-        _logger.LogInformation("[STARTED] Create user with username {UserName}", userDto.UserName);
         
         var createIdentityResult = await _appUserManager.CreateAsync(user);
         var addPasswordIdentityResult = await _appUserManager.AddPasswordAsync(user, userDto.Password);
         
         if (!(createIdentityResult.Succeeded && addPasswordIdentityResult.Succeeded))
         {
-            _logger.LogInformation("[FAILED] Create user with username {UserName}", userDto.UserName);
-
             var result = IdentityResult.Failed(
                 createIdentityResult.Errors.Concat(addPasswordIdentityResult.Errors).ToArray());
             return result;
         }
         
-        _logger.LogInformation("[COMPLETED] Create user with username {UserName}", userDto.UserName);
-
-        var userRegistered = new UserRegistered(user.Id, user.UserName!);
+        var userRegistered = new UserRegistered(user.Id, user.UserName!, user.Email!);
         await _publishEndpoint.Publish<IUserRegistered>(userRegistered, cancellationToken);
         
         return IdentityResult.Success;
@@ -72,13 +64,11 @@ public class UserService(IAppUserManager userManager,
         var user = await _appUserManager.Users.FirstOrDefaultAsync(x => x.UserName == userDto.UserName, cancellationToken);
         if (user is null)
         {
-            _logger.LogInformation("User with username {UserName} not found", userDto.UserName);
             throw new UserWithUserNameUnauthorizedException(userDto.UserName);
         }
 
         if (!await _appUserManager.CheckPasswordAsync(user, userDto.Password))
         {
-            _logger.LogInformation("Wrong password for user with username {UserName}", userDto.UserName);
             throw new WrongUserPasswordUnauthorizedException(userDto.UserName);
         }
 

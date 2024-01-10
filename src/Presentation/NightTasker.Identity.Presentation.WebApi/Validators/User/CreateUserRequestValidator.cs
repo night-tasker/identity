@@ -14,6 +14,10 @@ public class CreateUserRequestValidator : AbstractValidator<CreateUserRequest>
         RuleFor(x => x.UserName)
             .NotEmpty()
             .MinimumLength(5);
+        
+        RuleFor(x => x.Email)
+            .NotEmpty()
+            .EmailAddress();
 
         RuleFor(x => x.Password)
             .NotEmpty()

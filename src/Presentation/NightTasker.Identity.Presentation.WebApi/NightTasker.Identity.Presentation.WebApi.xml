@@ -136,6 +136,9 @@
             Путь для обновления токена доступа пользователя.
             </summary>
         </member>
+        <member name="T:NightTasker.Identity.Presentation.WebApi.Implementations.ApplicationDbAccessor">
+            <inheritdoc />
+        </member>
         <member name="P:NightTasker.Identity.Presentation.WebApi.Implementations.ApplicationDbAccessor.UserRefreshTokens">
             <inheritdoc />
         </member>
@@ -160,19 +163,24 @@
             Запрос на создание пользователя.
             </summary>
             <param name="UserName">Имя пользователя.</param>
+            <param name="Email">Электронная почта.</param>
             <param name="Password">Пароль пользователя.</param>
             <param name="ConfirmPassword">Подтверждение пароля.</param>
         </member>
-        <member name="M:NightTasker.Identity.Presentation.WebApi.Requests.User.CreateUserRequest.#ctor(System.String,System.String,System.String)">
+        <member name="M:NightTasker.Identity.Presentation.WebApi.Requests.User.CreateUserRequest.#ctor(System.String,System.String,System.String,System.String)">
             <summary>
             Запрос на создание пользователя.
             </summary>
             <param name="UserName">Имя пользователя.</param>
+            <param name="Email">Электронная почта.</param>
             <param name="Password">Пароль пользователя.</param>
             <param name="ConfirmPassword">Подтверждение пароля.</param>
         </member>
         <member name="P:NightTasker.Identity.Presentation.WebApi.Requests.User.CreateUserRequest.UserName">
             <summary>Имя пользователя.</summary>
+        </member>
+        <member name="P:NightTasker.Identity.Presentation.WebApi.Requests.User.CreateUserRequest.Email">
+            <summary>Электронная почта.</summary>
         </member>
         <member name="P:NightTasker.Identity.Presentation.WebApi.Requests.User.CreateUserRequest.Password">
             <summary>Пароль пользователя.</summary>

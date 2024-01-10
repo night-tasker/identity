@@ -1,6 +1,5 @@
 ﻿using System.Net;
 using System.Net.Http.Json;
-using System.Threading.Tasks;
 using Bogus;
 using FluentAssertions;
 using NightTasker.Identity.Presentation.WebApi.Constants;
@@ -8,7 +7,7 @@ using NightTasker.Identity.Presentation.WebApi.Endpoints;
 using NightTasker.Identity.Presentation.WebApi.Requests.User;
 using Xunit;
 
-namespace NightTasker.Identity.Core.Application.IntegrationTests.Controllers;
+namespace NightTasker.Identity.Core.Application.IntegrationTests.Controllers.V1;
 
 public class UsersControllerTests : BaseIntegrationTests
 {
@@ -25,8 +24,9 @@ public class UsersControllerTests : BaseIntegrationTests
     {
         // Arrange
         var username = _faker.Random.AlphaNumeric(8);
+        var email = $"{_faker.Random.AlphaNumeric(8)}@{_faker.Random.AlphaNumeric(8)}.com";
         var password = $"{_faker.Random.AlphaNumeric(8)}!";
-        var createUserRequest = new CreateUserRequest(username, password, password);
+        var createUserRequest = new CreateUserRequest(username, email, password, password);
         
         // Act
         var response = await HttpClient.PostAsJsonAsync(
