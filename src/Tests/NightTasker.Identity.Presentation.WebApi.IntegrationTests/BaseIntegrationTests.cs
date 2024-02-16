@@ -1,24 +1,19 @@
-﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
+﻿using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 
-namespace NightTasker.Identity.Core.Application.IntegrationTests;
+namespace NightTasker.Identity.Presentation.WebApi.IntegrationTests;
 
 public abstract class BaseIntegrationTests : 
-    IClassFixture<TestNpgSql>, 
     IAsyncDisposable
 {
     protected readonly TestWebApplicationFactory WebApplicationFactory;
     protected readonly HttpClient HttpClient;
 
-    protected BaseIntegrationTests(
-        TestNpgSql fixture)
+    protected BaseIntegrationTests()
     {
+        var testNpgSql = new TestNpgSql();
         var clientOptions = new WebApplicationFactoryClientOptions();
-        WebApplicationFactory = new TestWebApplicationFactory(fixture);
+        WebApplicationFactory = new TestWebApplicationFactory(testNpgSql);
         HttpClient = WebApplicationFactory.CreateClient(clientOptions);
     }
 

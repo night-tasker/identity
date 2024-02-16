@@ -6,11 +6,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NightTasker.Identity.Infrastructure.Persistence;
 
-namespace NightTasker.Identity.Core.Application.IntegrationTests;
+namespace NightTasker.Identity.Presentation.WebApi.IntegrationTests;
 
-public class TestWebApplicationFactory(TestNpgSql databaseFixture) : WebApplicationFactory<Program>
+public class TestWebApplicationFactory(TestNpgSql testDatabase) : WebApplicationFactory<Program>
 {
-    private readonly string _connectionString = databaseFixture.NpgSqlContainer.GetConnectionString();
+    private readonly string _connectionString = testDatabase.NpgSqlContainer.GetConnectionString();
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {

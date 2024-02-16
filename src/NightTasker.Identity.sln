@@ -24,7 +24,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NightTasker.Identity.Presen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NightTasker.Identity.Infrastructure.Identity.UnitTests", "Tests\NightTasker.Identity.Infrastructure.Identity.UnitTests\NightTasker.Identity.Infrastructure.Identity.UnitTests.csproj", "{81917D9B-8DED-4F80-B038-283AE3EC979E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NightTasker.Identity.Core.Application.IntegrationTests", "Tests\NightTasker.Identity.Core.Application.IntegrationTests\NightTasker.Identity.Core.Application.IntegrationTests.csproj", "{293D0700-8B00-403C-85B6-75B2494AE321}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NightTasker.Identity.Presentation.WebApi.IntegrationTests", "Tests\NightTasker.Identity.Presentation.WebApi.IntegrationTests\NightTasker.Identity.Presentation.WebApi.IntegrationTests.csproj", "{293D0700-8B00-403C-85B6-75B2494AE321}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NightTasker.Identity.Infrastructure.Messaging", "Infrastructure\NightTasker.Identity.Infrastructure.Messaging\NightTasker.Identity.Infrastructure.Messaging.csproj", "{ACA4629D-0006-4E46-ADA8-CC44B6D13285}"
 EndProject
